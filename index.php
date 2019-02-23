@@ -1,24 +1,20 @@
 <?php
 
-use templates\HtmlHelper;
 use templates\TemplatesHelper;
 use projects\ProjectsHelper;
+use templates\components\Home;
 
 require_once "server/templates/TemplatesHelper.php";
-require_once "server/templates/HtmlHelper.php";
 require_once "server/projects/ProjectsHelper.php";
+require_once "server/templates/components/Home.php";
 
 echo
 TemplatesHelper::getHtml(
-  HtmlHelper::element(
-    'main',
-    ['id' => 'main'],
-    'in progress'
-  ),
+  Home::build(),
   TemplatesHelper::getTitleByPageName('Home'),
   ['bundle.css'],
   [],
   [
-    'projects' => ProjectsHelper::getProjects(),
+    //'projects' => ProjectsHelper::getProjects(),
   ]
 );

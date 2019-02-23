@@ -13,3 +13,7 @@ define('STYLES_ROOT_DIR', ABS_ROOT_DIR . 'assets/styles/');
 define('SCRIPTS_ROOT_DIR', ABS_ROOT_DIR . 'assets/scripts/');
 
 define('REPO_URL', 'https://github.com/JasperLichte/personal-website');
+
+define('CREATOR_NAME', 'Jasper Lichte');
+define('CREATOR_EMAIL', 'jasper@lichte.info');
+define('CREATOR_GITHUB_URL', 'https://github.com/JasperLichte');
