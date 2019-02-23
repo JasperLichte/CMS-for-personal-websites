@@ -70,13 +70,17 @@ class Home
     public static function build()
     {
         return
-            HtmlHelper::element(
+            (HtmlHelper::element(
                 'div',
                 ['id' => 'page'],
                 (self::buildHeader()
                 . self::buildMain()
                 . self::buildFooter())
-            );
+            ) .
+            HtmlHelper::element(
+                'canvas',
+                ['id' => 'bg-canvas']
+            ));
     }
 
 }

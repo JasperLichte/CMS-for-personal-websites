@@ -1,1 +1,3 @@
-import * as conf from './config/env.js';
+import BgCanvasAnimation from "./bg-canvas/BgCanvasAnimation.js";
+
+new BgCanvasAnimation(<HTMLCanvasElement>document.getElementById('bg-canvas'));
