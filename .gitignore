@@ -1,0 +1,6 @@
+node_modules
+build
+assets/scripts/bundle.js
+assets/styles/bundle.css
+assets/styles/bundle.css.map
+server/base/config/credentials.php
