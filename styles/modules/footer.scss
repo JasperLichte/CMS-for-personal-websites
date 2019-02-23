@@ -15,23 +15,13 @@ footer {
   }
 
   & #links {
-    width: 100%;
-    max-width: 220px;
-
-    & .row {
-      margin-bottom: 1.25rem;
-
-      &  a {
-        cursor: pointer;
-        background-color: rgba(200, 200, 200, 0.5);
-        box-shadow: inset $defaultBoxShadow;
-        text-decoration: none;
-        padding: 0.5rem;
-      }
-
-      &:nth-of-type(even) > a {
-        float: right;
-      }
+    &  a {
+      cursor: pointer;
+      background-color: rgba(200, 200, 200, 0.5);
+      box-shadow: inset $defaultBoxShadow;
+      text-decoration: none;
+      padding: 0.5rem 0.75rem;
+      margin: 0.125rem;
     }
   }
 }

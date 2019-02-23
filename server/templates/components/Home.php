@@ -53,9 +53,6 @@ class Home
             HtmlHelper::textLink('mailto:' . CREATOR_EMAIL, ['id' => 'creator-email'], 'Send me an eMail!'),
             HtmlHelper::textLink(REPO_URL, ['id' => 'repo_url'], 'View the code'),
         ];
-        $links = array_map(function($link) {
-            return HtmlHelper::element('div', ['class' => 'row'], $link);
-        }, $links);
         $footerContent = [
             HtmlHelper::element('span', ['id' => 'creator-name'], CREATOR_NAME),
             HtmlHelper::element('div', ['id' => 'links'], implode('', $links))
