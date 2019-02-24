@@ -5,7 +5,7 @@ export default class Element {
   private velX = 0.5;
   private velY = 0.5;
   private radius: number;
-  private readonly COLOR = 'green';
+  private color: string;
 
   constructor(
     x: number,
@@ -13,12 +13,14 @@ export default class Element {
     radius: number,
     initialVelX: number,
     initialVelY: number,
+    color: string
   ) {
     this.x = x;
     this.y = y;
     this.radius = radius;
     this.velX = initialVelX;
     this.velY = initialVelY;
+    this.color = color;
   }
 
   private isInBounds(maxX: number, maxY: number): any[] {
@@ -52,10 +54,10 @@ export default class Element {
   }
 
   public draw(ctx: CanvasRenderingContext2D) {
-    ctx.strokeStyle = this.COLOR;
+    ctx.fillStyle = this.color;
     ctx.beginPath();
     ctx.arc(this.x, this.y, this.radius, 0, 2 * Math.PI);
-    ctx.stroke();
+    ctx.fill();
     return this;
   }
 

@@ -10,6 +10,7 @@ main {
 
     & > section {
       background-color: var(--content-bg-color);
+      transition: $bgColorTransition, $fontColorTransition;
       color: var(--content-font-color);
       box-shadow: $defaultBoxShadow;
       padding: 0.5rem;

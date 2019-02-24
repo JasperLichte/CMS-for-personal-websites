@@ -1,3 +1,4 @@
 body {
   background-color: var(--body-bg-color);
+  transition: $bgColorTransition, $fontColorTransition;
 }
