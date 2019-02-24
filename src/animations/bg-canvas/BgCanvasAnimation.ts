@@ -1,4 +1,4 @@
-import Element from "./Block.js";
+import Element from "./Element.js";
 
 export default class BgCanvasAnimation {
 
