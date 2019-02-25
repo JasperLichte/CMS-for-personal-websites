@@ -3,7 +3,7 @@
 namespace templates\components;
 
 require_once __DIR__ . './../HtmlHelper.php';
-require_once __DIR__ . './HomeSectionsContentHelper.php';
+require_once 'HomeSectionsContentHelper.php';
 
 use templates\HtmlHelper;
 

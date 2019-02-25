@@ -1,7 +1,7 @@
 export default class ColorAnimation {
 
   private themes: object;
-  private readonly delay = 5000;
+  private readonly delay = 20000;
   private colorSchemes: string[] = [];
   private currentScheme: string;
   private currentSchemeIndex: number = 0;

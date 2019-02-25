@@ -4,4 +4,4 @@ import themes from "./animations/colors/themes.js";
 
 new BgCanvasAnimation(<HTMLCanvasElement>document.getElementById('bg-canvas'));
 
-//new ColorAnimation(themes);
+new ColorAnimation(themes);
