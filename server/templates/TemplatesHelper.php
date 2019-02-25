@@ -98,8 +98,8 @@ class TemplatesHelper {
                 PRODUCTION:       " . (int)PRODUCTION . ",
                 REPO_URL:        '" . REPO_URL . "',
                 VERSION:         '" . VERSION . "',
-                BG_ANIMATION:    '" . false . "',
-                COLOR_ANIMATION: '" . false . "',
+                BG_ANIMATION:     " . (int)true . ",
+                COLOR_ANIMATION:  " . (int)true . ",
             };\n\n" .
             "window.__DATA = '" . str_replace("'", '', \json_encode($data)) . "';\n" .
             "</script>";
