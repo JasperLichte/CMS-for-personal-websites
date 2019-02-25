@@ -8,6 +8,15 @@ export default {
     'footer-bg': 'rgba(40, 125, 43, 0.85)',
     'footer-font': '#eee',
   },
+  'blue-red': {
+    'body-bg': '#224',
+    'header-bg': 'rgba(255, 99, 71, 0.85)',
+    'header-font': '#eee',
+    'content-bg': 'rgba(200, 200, 200, 0.7)',
+    'content-font': '#333',
+    'footer-bg': 'rgba(255, 99, 71, 0.85)',
+    'footer-font': '#eee',
+  },
   'classic': {
     'body-bg': '#eee',
     'header-bg': 'rgba(40, 40, 40, 0.9)',
