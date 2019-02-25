@@ -1,11 +1,11 @@
 export default {
-  'funky': {
+  'dark-green': {
     'body-bg': '#222',
-    'header-bg': 'rgba(40, 125, 43, 0.9)',
+    'header-bg': 'rgba(40, 125, 43, 0.85)',
     'header-font': '#eee',
-    'content-bg': 'rgba(200, 200, 200, 0.7)',
+    'content-bg': 'rgba(20, 20, 20, 0.85)',
     'content-font': 'rgb(40, 125, 43)',
-    'footer-bg': 'rgba(40, 125, 43, 0.9)',
+    'footer-bg': 'rgba(40, 125, 43, 0.85)',
     'footer-font': '#eee',
   },
   'classic': {
