@@ -94,10 +94,12 @@ class TemplatesHelper {
             });\n\n" .
             "console.info('" . implode(self::copyRightContent(), '') . "');\n\n" .
             "window.__CONF = {
-                APP_NAME:     '" . APP_NAME . "',
-                PRODUCTION:    " . (int)PRODUCTION . ",
-                REPO_URL:     '" . REPO_URL . "',
-                VERSION:      '" . VERSION . "',
+                APP_NAME:        '" . APP_NAME . "',
+                PRODUCTION:       " . (int)PRODUCTION . ",
+                REPO_URL:        '" . REPO_URL . "',
+                VERSION:         '" . VERSION . "',
+                BG_ANIMATION:    '" . false . "',
+                COLOR_ANIMATION: '" . false . "',
             };\n\n" .
             "window.__DATA = '" . str_replace("'", '', \json_encode($data)) . "';\n" .
             "</script>";

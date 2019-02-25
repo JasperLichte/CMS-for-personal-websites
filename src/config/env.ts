@@ -7,5 +7,7 @@ export const APP_NAME: string = conf['APP_NAME'];
 export const PRODUCTION: boolean = !!conf['PRODUCTION'];
 export const REPO_URL: string = conf['REPO_URL'];
 export const VERSION: string = conf['VERSION'];
+export const BG_ANIMATION: boolean = !!conf['BG_ANIMATION'];
+export const COLOR_ANIMATION: boolean = !!conf['COLOR_ANIMATION'];
 
 export const INITIAL_DATA: object = JSON.parse(data);
