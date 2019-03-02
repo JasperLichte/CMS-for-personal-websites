@@ -11,6 +11,7 @@ define('SUPPORTED_LANGUAGES', ['en', 'de', 'es', 'fr']);
 define('ABS_ROOT_DIR', getRootUrl());
 define('STYLES_ROOT_DIR', ABS_ROOT_DIR . 'assets/styles/');
 define('SCRIPTS_ROOT_DIR', ABS_ROOT_DIR . 'assets/scripts/');
+define('FAVICON_URL', 'https://www.media.lichte.info/assets/favicon.ico');
 
 define('REPO_URL', 'https://github.com/JasperLichte/personal-website');
 

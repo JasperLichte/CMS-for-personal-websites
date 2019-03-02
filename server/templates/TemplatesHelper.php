@@ -42,7 +42,7 @@ class TemplatesHelper {
     /**
      * @param string $url
      */
-    static function favicon($url = 'https://www.media.lichte.info/assets/favicon.ico') {
+    static function favicon($url = '') {
         return '<link rel="icon" href="' . $url . '" type="image/x-icon" />';
     }
 
@@ -148,7 +148,7 @@ class TemplatesHelper {
             self::metas() .
             self::title($title) .
             self::cssIncludes($cssFiles) .
-            self::favicon() .
+            self::favicon(FAVICON_URL) .
             self::HEAD_CLOSING_TAG .
             self::BODY_OPENING_TAG .
             self::inlineJs($data) .
