@@ -8,5 +8,11 @@
   width: 100vw;
   z-index: -1;
   background: transparent;
-  transition: $bgColorTransition;
+  transition: $bgColorTransition, $opacityTransition, $filterTransition;
+  -webkit-transition: $bgColorTransition, $opacityTransition, $webkitFilterTransition;
+  -o-transition: $bgColorTransition, $opacityTransition, $oFilterTransition;
+  -moz-transition: $bgColorTransition, $opacityTransition, $mozFilterTransition;
+  -ms-transition: $bgColorTransition, $opacityTransition, $msFilterTransition;
+  opacity: var(--bg-canvas-opacity);
+  filter: var(--bg-canvas-filter);
 }

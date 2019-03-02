@@ -1,7 +1,7 @@
 export default class ColorAnimation {
 
   private themes: object;
-  private readonly delay = 20000;
+  private readonly delay = 25000;
   private colorSchemes: string[] = [];
   private currentScheme: string;
   private currentSchemeIndex: number = 0;
@@ -30,7 +30,7 @@ export default class ColorAnimation {
     if (!theme) return;
     const html = document.getElementsByTagName('html')[0];
     for (const color in theme) {
-      html.style.setProperty(`--${color}-color`, theme[color]);
+      html.style.setProperty(`--${color}`, theme[color]);
     }
     
   }

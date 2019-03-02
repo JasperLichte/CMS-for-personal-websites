@@ -120,10 +120,10 @@ class TemplatesHelper {
      */
     static function copyRightContent() {
         return [
-            "This software belongs to: ",
-            "Jasper Lichte ",
-            "(jasper@lichte.info)",
-            ];
+            'This software belongs to: ',
+            CREATOR_NAME . ' ',
+            '(' . CREATOR_EMAIL . ')',
+        ];
     }
 
     /**
