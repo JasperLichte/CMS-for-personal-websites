@@ -1,28 +1,36 @@
 footer {
+  padding: 2rem 1rem;
+  display: flex;
+  justify-content: center;
   background-color: var(--footer-bg-color);
   color: var(--footer-font-color);
-  padding: 2rem 1rem;
   box-shadow: $defaultBoxShadow;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
   transition: $bgColorTransition, $fontColorTransition;
 
-  & #creator-name {
-    margin-bottom: 2rem;
-    font-size: 1.5rem;
-    border-bottom: 1px solid var(--footer-font-color);
-    padding: 0 0.5rem;
-  }
+  & > #footer-wrapper {
+    width: 100%;
+    max-width: $mainElementsMaxWidth;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 
-  & #links {
-    &  a {
-      cursor: pointer;
-      background-color: rgba(200, 200, 200, 0.5);
-      box-shadow: inset $defaultBoxShadow;
-      text-decoration: none;
-      padding: 0.5rem 0.75rem;
-      margin: 0.125rem;
+    & #creator-name {
+      margin-bottom: 2rem;
+      font-size: 1.5rem;
+      border-bottom: 1px solid var(--footer-font-color);
+      padding: 0 0.5rem;
     }
+
+    & #links {
+      &  a {
+        cursor: pointer;
+        background-color: rgba(200, 200, 200, 0.5);
+        box-shadow: inset $defaultBoxShadow;
+        text-decoration: none;
+        padding: 0.5rem 0.75rem;
+        margin: 0.125rem;
+      }
+    }
+
   }
 }

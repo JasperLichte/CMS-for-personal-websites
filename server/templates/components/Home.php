@@ -7,8 +7,7 @@ require_once 'HomeSectionsContentHelper.php';
 
 use templates\HtmlHelper;
 
-class Home
-{
+class Home {
 
     /**
      * @return string
@@ -17,14 +16,19 @@ class Home
         return HtmlHelper::element(
             'header',
             [],
-            'header'
+            HtmlHelper::element(
+                'div',
+                ['id' => 'header-wrapper'],
+                'header'
+            )
         );
     }
 
     /**
      * @return string
      */
-    private static function buildMain() {
+    private static function buildMain()
+    {
         $sectionsHtml = [];
         foreach (HomeSectionsContentHelper::getSections() as $key => $section) {
             $sectionsHtml[] = HtmlHelper::element(
@@ -39,7 +43,7 @@ class Home
             [],
             HtmlHelper::element(
                 'div',
-                ['id' => 'content',],
+                ['id' => 'main-wrapper'],
                 implode('', $sectionsHtml)
             )
         );
@@ -48,7 +52,8 @@ class Home
     /**
      * @return string
      */
-    private static function buildFooter() {
+    private static function buildFooter()
+    {
         $links = [
             HtmlHelper::textLink('mailto:' . CREATOR_EMAIL, ['id' => 'creator-email'], 'Send me an eMail!'),
             HtmlHelper::textLink(REPO_URL, ['id' => 'repo_url'], 'View the code'),
@@ -60,7 +65,11 @@ class Home
         return HtmlHelper::element(
             'footer',
             [],
-            implode('', $footerContent)
+            HtmlHelper::element(
+                'div',
+                ['id' => 'footer-wrapper'],
+                implode('', $footerContent)
+            )
         );
     }
 
