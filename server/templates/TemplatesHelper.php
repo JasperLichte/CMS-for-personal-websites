@@ -116,7 +116,7 @@ class TemplatesHelper {
     }
 
     /**
-     * @return string
+     * @return array
      */
     static function copyRightContent() {
         return [
