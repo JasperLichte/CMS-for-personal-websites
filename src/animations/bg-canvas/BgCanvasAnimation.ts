@@ -111,7 +111,7 @@ export default class BgCanvasAnimation {
   }
 
   private calcNeededElements() {
-    return ~~((this.height * this.width) / 8500);
+    return ~~((this.height * this.width) / 25000);
   }
 
 }
