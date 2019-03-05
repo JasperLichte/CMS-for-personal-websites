@@ -51,3 +51,16 @@ function getRootUrl() {
         dirname($_SERVER["REQUEST_URI"] . '?') 
         . '/';
 }
+
+/**
+ * @param $obj
+ */
+function jsConsoleLog($obj) {
+    echo "<script>" .
+            "console.log(" .
+                "JSON.parse('" .
+                    str_replace("'", "", json_encode($obj))
+                . "')" .
+            ")" .
+        "</script>";
+}

@@ -1,14 +1,21 @@
 $defaultBoxShadow: 0 0 5px rgba(0, 0, 0, 0.2);
+$mainElementsMaxWidth: 720px;
+
+// TRANSITIONS
 
 $tranistionDuration: 3s;
 $tranistionTimingFunction: ease;
+
 $bgColorTransition: background-color $tranistionDuration $tranistionTimingFunction;
+
 $fontColorTransition: color $tranistionDuration $tranistionTimingFunction;
+
 $opacityTransition: opacity $tranistionDuration $tranistionTimingFunction;
+
 $filterTransition: filter $tranistionDuration $tranistionTimingFunction;
 $webkitFilterTransition: -webkit-filter $tranistionDuration $tranistionTimingFunction;
 $mozFilterTransition: -moz-filter $tranistionDuration $tranistionTimingFunction;
 $oFilterTransition: -o-filter $tranistionDuration $tranistionTimingFunction;
 $msFilterTransition: -ms-filter $tranistionDuration $tranistionTimingFunction;
 
-$mainElementsMaxWidth: 720px;
+$borderColorTransition: border-color $tranistionDuration $tranistionTimingFunction;

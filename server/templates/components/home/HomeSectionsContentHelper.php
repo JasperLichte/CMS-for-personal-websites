@@ -3,6 +3,8 @@
 namespace templates\components;
 
 
+use projects\ProjectsHelper;
+
 class HomeSectionsContentHelper
 {
 
@@ -11,8 +13,14 @@ class HomeSectionsContentHelper
      */
     public static function getSections() {
         return [
-            "<h1>huhu</h1>",
-            'hallo'
+            'hello' => [
+                'header' => 'Hi',
+                'content' => "<h1>huhu</h1>"
+            ],
+            'projects' => [
+                'header' => 'My Projects',
+                'content' => ProjectsHelper::buildProjectsHtml()
+            ],
         ];
     }
 

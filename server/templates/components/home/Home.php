@@ -8,12 +8,14 @@ require_once 'HomeSectionsContentHelper.php';
 use templates\components\HomeSectionsContentHelper;
 use templates\HtmlHelper;
 
-class Home {
+class Home
+{
 
     /**
      * @return string
      */
-    private static function buildHeader() {
+    private static function buildHeader()
+    {
         return HtmlHelper::element(
             'header',
             [],
@@ -34,8 +36,13 @@ class Home {
         foreach (HomeSectionsContentHelper::getSections() as $key => $section) {
             $sectionsHtml[] = HtmlHelper::element(
                 'section',
-                ['id' => 'content-section-' . $key],
-                $section
+                [
+                    'class'             => 'content-section',
+                    'id'                => 'content-section-' . $key,
+                    'data-section-name' => $key,
+                ],
+                HtmlHelper::element('h2', ['class' => 'section-header'], $section['header'])
+                . $section['content']
             );
         }
 
@@ -61,7 +68,7 @@ class Home {
         ];
         $footerContent = [
             HtmlHelper::element('span', ['id' => 'creator-name'], CREATOR_NAME),
-            HtmlHelper::element('div', ['id' => 'links'], implode('', $links))
+            HtmlHelper::element('div', ['id' => 'links'], implode('', $links)),
         ];
         return HtmlHelper::element(
             'footer',
@@ -81,16 +88,16 @@ class Home {
     {
         return
             (HtmlHelper::element(
-                'div',
-                ['id' => 'page'],
-                (self::buildHeader()
-                . self::buildMain()
-                . self::buildFooter())
-            ) .
-            HtmlHelper::element(
-                'canvas',
-                ['id' => 'bg-canvas']
-            ));
+                    'div',
+                    ['id' => 'page'],
+                    (self::buildHeader()
+                        . self::buildMain()
+                        . self::buildFooter())
+                ) .
+                HtmlHelper::element(
+                    'canvas',
+                    ['id' => 'bg-canvas']
+                ));
     }
 
 }

@@ -1,0 +1,19 @@
+#content-section-projects {
+
+  & #projects-github-repos-list {
+
+    & .repo {
+      border: 1px solid var(--content-accent-font-color);
+      transition: $borderColorTransition;
+      list-style-type: none;
+      margin-bottom: 0.25rem;
+      padding: 0.5rem;
+
+      &:last-of-type {
+        margin-bottom: 0;
+      }
+    }
+
+  }
+
+}
