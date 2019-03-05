@@ -2,11 +2,11 @@
 
 use templates\TemplatesHelper;
 use projects\ProjectsHelper;
-use templates\components\Home;
+use templates\components\home\Home;
 
 require_once "server/templates/TemplatesHelper.php";
 require_once "server/projects/ProjectsHelper.php";
-require_once "server/templates/components/Home.php";
+require_once "server/templates/components/home/Home.php";
 
 echo
 TemplatesHelper::getHtml(

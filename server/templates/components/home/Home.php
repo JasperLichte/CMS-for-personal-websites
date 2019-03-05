@@ -1,10 +1,11 @@
 <?php
 
-namespace templates\components;
+namespace templates\components\home;
 
-require_once __DIR__ . './../HtmlHelper.php';
+require_once __DIR__ . './../../HtmlHelper.php';
 require_once 'HomeSectionsContentHelper.php';
 
+use templates\components\HomeSectionsContentHelper;
 use templates\HtmlHelper;
 
 class Home {
