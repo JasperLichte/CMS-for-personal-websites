@@ -47,7 +47,7 @@ export default class BgCanvasAnimation {
     this.loop();
   }
 
-  private clearCanvas() {
+  public clearCanvas() {
     this.ctx.clearRect(0, 0, this.width, this.height);
   }
 
