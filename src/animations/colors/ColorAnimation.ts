@@ -1,13 +1,14 @@
 export default class ColorAnimation {
 
   private themes: object;
-  private readonly delay = 25000;
+  private delay;
   private colorSchemes: string[] = [];
   private currentScheme: string;
   private currentSchemeIndex: number = 0;
 
-  public constructor(themes: object) {
+  public constructor(themes: object, delay = 30000) {
     this.themes = themes;
+    this.delay = delay;
     this.prepareThemes();
     this.loop = this.loop.bind(this);
     this.loop();
@@ -31,8 +32,18 @@ export default class ColorAnimation {
     const html = document.getElementsByTagName('html')[0];
     for (const color in theme) {
       html.style.setProperty(`--${color}`, theme[color]);
+    }  
+  }
+
+  public getThemes() {
+    return this.themes;
+  }
+
+  public getTheme(themeName) {
+    if ((themeName in this.themes) && this.themes[themeName]) {
+      return this.themes[themeName];
     }
-    
+    return {};
   }
 
 }

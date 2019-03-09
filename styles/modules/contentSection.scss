@@ -11,7 +11,10 @@ section.content-section {
   }
 
   & .section-header {
-    transition: $borderColorTransition;
+    text-align: right;
+    text-transform: uppercase;
+    font-family: $secondaryFont;
+    font-size: 2rem;
     border-bottom: 1px solid var(--content-accent-font-color);
     margin-bottom: 1rem;
   }

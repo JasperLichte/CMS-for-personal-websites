@@ -1,4 +1,5 @@
 body {
-  background-color: var(--body-bg-color);
+  background: var(--body-bg);
   transition: $bgColorTransition, $fontColorTransition;
+  font-family: $mainFont;
 }

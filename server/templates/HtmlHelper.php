@@ -43,7 +43,8 @@ class HtmlHelper
      * @param bool $escapeContent
      * @return string
      */
-    public static function textLink($url = '', $attribs = [], $content = '', $escapeContent = false) {
+    public static function textLink($url = '', $attribs = [], $content = '', $escapeContent = false)
+    {
         return self::element(
             'a',
             array_merge($attribs, ['href' => $url]),
@@ -56,15 +57,36 @@ class HtmlHelper
      * @param string $content
      * @return string
      */
-    public static function container($content = '') {
+    public static function container($content = '')
+    {
         return self::element('div', [], $content);
+    }
+
+    /**
+     * @param string $src
+     * @param array $attribs
+     * @return string
+     */
+    public static function inlineImg($src = '', $attribs = [])
+    {
+        return self::element(
+            'img',
+            array_merge(
+                $attribs,
+                [
+                    'src'   => $src,
+                    'style' => 'height: 1rem; display: inline;',
+                ]
+            )
+        );
     }
 
     /**
      * @param string $str
      * @return string
      */
-    public static function escape($str = '') {
+    public static function escape($str = '')
+    {
         return htmlspecialchars($str);
     }
 

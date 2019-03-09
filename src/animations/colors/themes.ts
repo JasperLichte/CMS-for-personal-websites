@@ -1,6 +1,6 @@
 export default {
   'dark-green': {
-    'body-bg-color': '#222',
+    'body-bg': '#222',
     'header-bg-color': 'rgba(40, 125, 43, 0.85)',
     'header-font-color': '#eee',
     'content-bg-color': 'rgba(20, 20, 20, 0.85)',
@@ -12,7 +12,7 @@ export default {
     'bg-canvas-filter': 'none',
   },
   'funky': {
-    'body-bg-color': '#224',
+    'body-bg': '#224',
     'header-bg-color': 'rgba(255, 99, 71, 0.85)',
     'header-font-color': '#eee',
     'content-bg-color': 'rgba(200, 200, 200, 0.85)',
@@ -24,7 +24,7 @@ export default {
     'bg-canvas-filter': 'contrast(7)',
   },
   'classic': {
-    'body-bg-color': '#eee',
+    'body-bg': '#eee',
     'header-bg-color': 'rgba(40, 40, 40, 0.9)',
     'header-font-color': '#eee',
     'content-bg-color': 'rgba(255, 255, 255, 0.85)',

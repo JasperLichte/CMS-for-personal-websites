@@ -47,14 +47,32 @@ class ProjectsHelper
         $projects = self::getProjects();
         $githubProjects = (is_array($projects) && isset($projects['github']) ? $projects['github'] : []);
 
+        usort($githubProjects, function($a, $b) {
+            if ($a['stargazers_count'] == $b['stargazers_count']) {
+                if ($a['watchers_count'] == $b['watchers_count']) {
+                    return $a['forks'] < $b['forks'];
+                }
+                return $a['watchers_count'] < $b['watchers_count'];
+            }
+            return $a['stargazers_count'] < $b['stargazers_count'];
+        });
+
         $html = [];
         foreach ($githubProjects as $key => $repo) {
             $name = (isset($repo['name']) && !empty($repo['name']) ? $repo['name'] : '');
             $description = (isset($repo['description']) && !empty($repo['description']) ? $repo['description'] : '');
+            $stars = (isset($repo['stargazers_count']) && !empty($repo['stargazers_count']) ? $repo['stargazers_count'] : 0);
+            $watchers = (isset($repo['watchers_count']) && !empty($repo['watchers_count']) ? $repo['watchers_count'] : 0);
+            $forks = (isset($repo['forks']) && !empty($repo['forks']) ? $repo['forks'] : 0);
 
             $repoHtml = [];
             $repoHtml[] = HtmlHelper::element('h3', ['class' => 'repo-name'], $name);
-            $repoHtml[] = HtmlHelper::element('p', ['class' => 'repo-name'], $description);
+            $repoHtml[] = HtmlHelper::element('p', ['class' => 'repo-description'], $description);
+            $repoHtml[] = HtmlHelper::element('div', ['class' => 'repo-stats'], implode('', [
+                HtmlHelper::element('span', [], HtmlHelper::inlineImg(MEDIA_ROOT_URL . 'assets/star.svg') . $stars),
+                HtmlHelper::element('span', [], HtmlHelper::inlineImg(MEDIA_ROOT_URL . 'assets/eye.svg') . $watchers),
+                HtmlHelper::element('span', [], HtmlHelper::inlineImg(MEDIA_ROOT_URL . 'assets/fork.svg') . $forks),
+            ]));
 
             $html[] = HtmlHelper::element(
                 'li',

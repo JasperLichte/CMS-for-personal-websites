@@ -4,7 +4,8 @@ namespace templates;
 
 require_once __DIR__ . './../base/base.php';
 
-class TemplatesHelper {
+class TemplatesHelper
+{
 
     const DOCTYPE = "<!DOCTYPE html>\n";
     const CHARSET = "UTF-8";
@@ -18,7 +19,8 @@ class TemplatesHelper {
      * @param string $language
      * @return string
      */
-    static function htmlOpeningTag($language = 'en') {
+    static function htmlOpeningTag($language = 'en')
+    {
         return "<html lang=\"{$language}\">\n";
     }
 
@@ -26,14 +28,16 @@ class TemplatesHelper {
      * @param string $title
      * @return string
      */
-    static function title($title = '') {
+    static function title($title = '')
+    {
         return "<title>{$title}</title>\n";
     }
 
     /**
      * @return string
      */
-    static function metas() {
+    static function metas()
+    {
         return
             "<meta charset=\"" . self::CHARSET . "\">\n" .
             "<meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n";
@@ -42,7 +46,8 @@ class TemplatesHelper {
     /**
      * @param string $url
      */
-    static function favicon($url = '') {
+    static function favicon($url = '')
+    {
         return '<link rel="icon" href="' . $url . '" type="image/x-icon" />';
     }
 
@@ -50,7 +55,8 @@ class TemplatesHelper {
      * @param array $files
      * @return string
      */
-    static function cssIncludes($files = []) {
+    static function cssIncludes($files = [])
+    {
         $html = '';
         foreach ($files as $file) {
             if (!is_string($file)) {
@@ -66,7 +72,8 @@ class TemplatesHelper {
      * @param array $files
      * @return string
      */
-    static function jsIncludes($files = []) {
+    static function jsIncludes($files = [])
+    {
         $html = '';
         foreach ($files as $file) {
             if (!is_string($file)) {
@@ -86,29 +93,24 @@ class TemplatesHelper {
     /**
      * @return string
      */
-    static function inlineJs($data = []) {
+    static function inlineJs($data = [])
+    {
         return "" .
             "<script>\n" .
             "window.addEventListener('load', function() {
                 document.body.classList.remove('preload')
-            });\n\n" .
-            "console.info('" . implode(self::copyRightContent(), '') . "');\n\n" .
-            "window.__CONF = {
-                APP_NAME:        '" . APP_NAME . "',
-                PRODUCTION:       " . (int)PRODUCTION . ",
-                REPO_URL:        '" . REPO_URL . "',
-                VERSION:         '" . VERSION . "',
-                BG_ANIMATION:     " . (int)true . ",
-                COLOR_ANIMATION:  " . (int)true . ",
-            };\n\n" .
-            "window.__DATA = '" . str_replace("'", '', \json_encode($data)) . "';\n" .
+            });" .
+            "console.info('" . implode(self::copyRightContent(), '') . "');" .
+            "window.__CONF = '" . str_replace("'", '', \json_encode(self::getConf())) . "';" .
+            "window.__DATA = '" . str_replace("'", '', \json_encode($data)) . "';" .
             "</script>";
     }
 
     /**
      * @return string
      */
-    static function copyRightComment() {
+    static function copyRightComment()
+    {
         return
             "\n<!--\n\n" .
             implode(self::copyRightContent(), "\n") .
@@ -118,7 +120,8 @@ class TemplatesHelper {
     /**
      * @return array
      */
-    static function copyRightContent() {
+    static function copyRightContent()
+    {
         return [
             'This software belongs to: ',
             CREATOR_NAME . ' ',
@@ -162,7 +165,8 @@ class TemplatesHelper {
      * @param string $page
      * @return string
      */
-    static function getTitleByPageName($page = '') {
+    static function getTitleByPageName($page = '')
+    {
         if (!defined('APP_NAME')) {
             return $page;
         }
@@ -170,6 +174,19 @@ class TemplatesHelper {
             return APP_NAME . ' | ' . $page;
         }
         return APP_NAME;
+    }
+
+    private static function getConf()
+    {
+        return [
+            'APP_NAME'        => APP_NAME,
+            'PRODUCTION'      => (int)PRODUCTION,
+            'REPO_URL'        => REPO_URL,
+            'VERSION'         => VERSION,
+            'BG_ANIMATION'    => (int)BG_ANIMATION,
+            'COLOR_ANIMATION' => (int)COLOR_ANIMATION,
+            'COLOR_ANIMATION_DELAY' => (int)COLOR_ANIMATION_DELAY,
+        ];
     }
 
 }

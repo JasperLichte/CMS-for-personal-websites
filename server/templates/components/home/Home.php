@@ -34,6 +34,13 @@ class Home
     {
         $sectionsHtml = [];
         foreach (HomeSectionsContentHelper::getSections() as $key => $section) {
+            $header = (isset($section['header']) && !empty($section['header'])
+                ? HtmlHelper::element('h2', ['class' => 'section-header'], $section['header'])
+                : '');
+            $content = (isset($section['content']) && !empty($section['content'])
+                ? $section['content']
+                : '');
+
             $sectionsHtml[] = HtmlHelper::element(
                 'section',
                 [
@@ -41,8 +48,7 @@ class Home
                     'id'                => 'content-section-' . $key,
                     'data-section-name' => $key,
                 ],
-                HtmlHelper::element('h2', ['class' => 'section-header'], $section['header'])
-                . $section['content']
+                $header . $content
             );
         }
 
