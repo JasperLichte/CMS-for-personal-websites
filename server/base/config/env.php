@@ -2,7 +2,7 @@
 
 define('APP_NAME', 'Jasper Lichte');
 
-define('PRODUCTION', true);
+define('PRODUCTION', false);
 define('VERSION', '0.1.0');
 
 define('DEFAULT_LANGUAGE', 'en');

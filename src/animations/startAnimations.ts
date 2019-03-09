@@ -6,30 +6,19 @@ import {
   COLOR_ANIMATION,
   COLOR_ANIMATION_DELAY
 } from '../config/env.js';
+import { revealFunctionality } from "../funcs/func.js";
 
 export default () => {
 
   if (BG_ANIMATION) {
-    new BgCanvasAnimation(
-      <HTMLCanvasElement> document.getElementById('bg-canvas')
-    );
+    const animation = new BgCanvasAnimation(<HTMLCanvasElement> document.getElementById('bg-canvas'));
+    revealFunctionality('bgAnimation', animation);
   }
 
   if (COLOR_ANIMATION) {
-    //@ts-ignore
-    window.__ = window.__ || {};
-    //@ts-ignore
-    window.__.animations = window.__.animations || {};
-    //@ts-ignore
-    window.__.animations.color = {
-      animation: new ColorAnimation(themes, COLOR_ANIMATION_DELAY),
-      _changeTheme: ColorAnimation.changeTheme,
-    };
-    //@ts-ignore
-    window.__.animations.color.changeTheme = theme => {
-      //@ts-ignore
-      return window.__.animations.color._changeTheme(window.__.animations.color.animation.getTheme(theme));
-    };
+    const animation = new ColorAnimation(themes, COLOR_ANIMATION_DELAY);
+    revealFunctionality('themes', animation.getThemes());
+    revealFunctionality('changeTheme', ColorAnimation.changeTheme);
   }
 
 }

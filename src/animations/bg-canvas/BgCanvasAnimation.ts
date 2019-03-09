@@ -11,6 +11,7 @@ export default class BgCanvasAnimation {
   private fps: number = 0;
   private numberOfElements: number;
   private elememts: Element[] = [];
+  private running = true;
 
   constructor(canvas: HTMLCanvasElement) {
     this.canvas = canvas;
@@ -27,8 +28,7 @@ export default class BgCanvasAnimation {
   }
 
   private loop() {
-    requestAnimationFrame(this.loop);
-    ////////////////////
+    this.running && requestAnimationFrame(this.loop);
     this.setTimeElapsed();
     this.clearCanvas();
 
@@ -36,6 +36,15 @@ export default class BgCanvasAnimation {
       this.elememts[i].move(this.width, this.height).draw(this.ctx);
     }
       
+  }
+
+  public stop() {
+    this.running = false;
+  }
+
+  public start() {
+    this.running = true;
+    this.loop();
   }
 
   private clearCanvas() {
@@ -73,11 +82,11 @@ export default class BgCanvasAnimation {
     this.fps = ~~(1000 / this.timeElapsed);
   }
 
-  private getFps() {
+  public getFps() {
     return this.fps;
   }
 
-  private addElements(n: number): BgCanvasAnimation {
+  public addElements(n: number): BgCanvasAnimation {
     n = ~~n;
     for (let i = 0; i < n; i++) {
       const radius = (Math.random() * (100 - 10) + 10);
@@ -96,7 +105,7 @@ export default class BgCanvasAnimation {
     return this;
   }
 
-  private removeElements(n: number): BgCanvasAnimation {
+  public removeElements(n: number): BgCanvasAnimation {
     n = ~~n;
     this.elememts.splice(0, n);
     this.numberOfElements -= n;
