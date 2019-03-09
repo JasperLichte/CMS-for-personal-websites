@@ -3,7 +3,7 @@ section.content-section {
   transition: $bgColorTransition, $fontColorTransition;
   color: var(--content-font-color);
   box-shadow: $defaultBoxShadow;
-  padding: 0.5rem;
+  padding: 1rem;
   margin-bottom: 0.5rem;
 
   &:last-of-type {

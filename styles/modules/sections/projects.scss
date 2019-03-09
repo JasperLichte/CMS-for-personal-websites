@@ -1,45 +1,41 @@
 #content-section-projects {
-
   & #projects-github-repos-list {
-
     & .repo {
       border: 1px solid var(--content-accent-font-color);
       transition: $borderColorTransition;
       list-style-type: none;
-      margin-bottom: 0.25rem;
-      padding: 0.5rem;
+      margin-bottom: 0.4rem;
 
-      &:last-of-type {
-        margin-bottom: 0;
-      }
+      & > a {
+        padding: 0.5rem;
 
-      .repo-name {
-        text-transform: uppercase;  
-      }
-
-      .repo-description {
-        margin: 0.5rem 0;
-        &::before {
-          content: '> ';
+        &:last-of-type {
+          margin-bottom: 0;
         }
-      }
+        .repo-name {
+          text-transform: uppercase;  
+        }
+        .repo-description {
+          margin: 0.5rem 0;
+          &::before {
+            content: '> ';
+          }
+        }
+        .repo-stats {
+          width: max-content;
+          background-color: rgba(200, 200, 200, 0.4);
+          color: #222;
+          padding: 0.125rem;
 
-      .repo-stats {
-        width: max-content;
-        background-color: rgba(200, 200, 200, 0.4);
-        color: #222;
-        padding: 0.125rem;
+          span {
+            margin: 0.25rem;
 
-        span {
-          margin: 0.25rem;
-
-          img {
-            margin-right: 0.25rem;
+            img {
+              margin-right: 0.25rem;
+            }
           }
         }
       }
     }
-
   }
-
 }
