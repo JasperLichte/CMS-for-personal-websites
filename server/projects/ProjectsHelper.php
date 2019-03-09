@@ -70,7 +70,7 @@ class ProjectsHelper
             $repoHtml[] = HtmlHelper::element('h3', ['class' => 'repo-name'], $name);
             $repoHtml[] = HtmlHelper::element('p', ['class' => 'repo-description'], $description);
             $repoHtml[] = HtmlHelper::element('div', ['class' => 'repo-stats'], implode('', [
-                HtmlHelper::element('span', ['title' => 'Starts'], HtmlHelper::inlineImg(MEDIA_ROOT_URL . 'assets/star.svg') . $stars),
+                HtmlHelper::element('span', ['title' => 'Stars'], HtmlHelper::inlineImg(MEDIA_ROOT_URL . 'assets/star.svg') . $stars),
                 HtmlHelper::element('span', ['title' => 'Watching'], HtmlHelper::inlineImg(MEDIA_ROOT_URL . 'assets/eye.svg') . $watchers),
                 HtmlHelper::element('span', ['title' => 'Forks'], HtmlHelper::inlineImg(MEDIA_ROOT_URL . 'assets/fork.svg') . $forks),
             ]));
