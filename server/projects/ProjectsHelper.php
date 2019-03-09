@@ -61,6 +61,7 @@ class ProjectsHelper
         foreach ($githubProjects as $key => $repo) {
             $name = (isset($repo['name']) && !empty($repo['name']) ? $repo['name'] : '');
             $description = (isset($repo['description']) && !empty($repo['description']) ? $repo['description'] : '');
+            $repoUrl = (isset($repo['html_url']) && !empty($repo['html_url']) ? $repo['html_url'] : '');
             $stars = (isset($repo['stargazers_count']) && !empty($repo['stargazers_count']) ? $repo['stargazers_count'] : 0);
             $watchers = (isset($repo['watchers_count']) && !empty($repo['watchers_count']) ? $repo['watchers_count'] : 0);
             $forks = (isset($repo['forks']) && !empty($repo['forks']) ? $repo['forks'] : 0);
@@ -80,7 +81,11 @@ class ProjectsHelper
                     'class' => 'repo',
                     'id' => 'repo-' . ($key + 1),
                 ],
-                implode('', $repoHtml)
+                HtmlHelper::textLink(
+                    $repoUrl,
+                    ['style' => 'display: block; text-decoration: none;'],
+                    implode('', $repoHtml)
+                )
             );
         }
         return HtmlHelper::element('ul', ['id' => 'projects-github-repos-list'], implode('', $html));
