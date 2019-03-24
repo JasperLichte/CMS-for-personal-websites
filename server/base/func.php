@@ -2,7 +2,7 @@
 
 use base\config\Config;
 
-require_once __DIR__ . '/config/Config.php';
+require_once __DIR__ . './../config/Config.php';
 
 /**
  * @return string
