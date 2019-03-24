@@ -77,16 +77,25 @@ class TemplatesHelper
      */
     static function jsIncludes($files = []) {
         $html = '';
-        foreach ($files as $file) {
-            if (!is_string($file)) {
+        foreach ($files as $file => $fileType) {
+            if (!is_string($file) || !is_string($fileType)) {
                 continue;
             }
             $file = Config::SCRIPTS_ROOT_DIR() . $file;
-            $html .= "<script type=\"text/javascript\" src=\"{$file}\"></script>\n";
+            $html .= "<script type=\"" . $fileType . "\" src=\"{$file}\"></script>\n";
         }
-
-        $html .= Config::MAIN_JS_FILE_IMPORT();
         return $html;
+    }
+
+    /**
+     * @param string $file
+     * @return string
+     */
+    static function mainJsInclude($file) {
+        if (!is_string($file) || !strlen($file)) {
+            return '';
+        }
+        return "<script type=\"" . Config::MAIN_JS_FILE_TYPE() . "\" src=\"{$file}\"></script>\n";
     }
 
     /**
@@ -139,6 +148,7 @@ class TemplatesHelper
      * @param string $title
      * @param array $cssFiles
      * @param array $jsFiles
+     * @param string $mainJS
      * @return string
      */
     static function getHtml(
@@ -146,7 +156,7 @@ class TemplatesHelper
         $title = '',
         $cssFiles = [],
         $jsFiles = [],
-        $data = []
+        $mainJS = ''
     ) {
         return
             self::DOCTYPE .
@@ -159,10 +169,11 @@ class TemplatesHelper
             self::favicon(Config::FAVICON_URL()) .
             self::HEAD_CLOSING_TAG .
             self::BODY_OPENING_TAG .
-            self::inlineJs($data) .
+            self::inlineJs() .
             $content . "\n" .
             self::BODY_CLOSING_TAG .
             self::jsIncludes($jsFiles) .
+            self::mainJsInclude($mainJS) .
             self::HTML_CLOSING_TAG;
     }
 

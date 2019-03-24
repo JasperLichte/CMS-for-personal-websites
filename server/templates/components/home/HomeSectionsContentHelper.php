@@ -2,6 +2,7 @@
 
 namespace templates\components;
 
+require_once __DIR__ . './../../../projects/ProjectsHelper.php';
 
 use projects\ProjectsHelper;
 

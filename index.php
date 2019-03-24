@@ -1,20 +1,18 @@
 <?php
 
+use routing\Router;
 use templates\TemplatesHelper;
-use projects\ProjectsHelper;
-use templates\components\home\Home;
 
-require_once "server/templates/TemplatesHelper.php";
-require_once "server/projects/ProjectsHelper.php";
-require_once "server/templates/components/home/Home.php";
+require_once 'server/routing/Router.php';
+require_once 'server/templates/TemplatesHelper.php';
+
+$component = Router::getComponentByRequest();
 
 echo
 TemplatesHelper::getHtml(
-  Home::build(),
-  TemplatesHelper::getTitleByPageName('Home'),
-  ['bundle.css'],
-  [],
-  [
-    //'projects' => ProjectsHelper::getProjects(),
-  ]
+    $component::build(),
+    TemplatesHelper::getTitleByPageName($component::NAME),
+    $component::NEEDED_CSS_FILES,
+    $component::NEEDED_JS_FILES,
+    $component::MAIN_JS_FILE()
 );

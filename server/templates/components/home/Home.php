@@ -3,14 +3,25 @@
 namespace templates\components\home;
 
 require_once __DIR__ . './../../HtmlHelper.php';
+require_once __DIR__ . './../Component.php';
 require_once 'HomeSectionsContentHelper.php';
 
 use base\config\Config;
+use templates\components\Component;
 use templates\components\HomeSectionsContentHelper;
 use templates\HtmlHelper;
 
-class Home
+class Home extends Component
 {
+
+    const NAME = 'Home';
+
+    /**
+     * @return string
+     */
+    public static function MAIN_JS_FILE() {
+        return Config::MAIN_JS_FILE();
+    }
 
     /**
      * @return string
