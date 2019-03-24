@@ -17,9 +17,9 @@ class HomeSectionsContentHelper
                 'header' => 'Hi',
                 'content' => "<h1>huhu</h1>"
             ],
-            'projects' => [
-                'header' => 'My Projects',
-                'content' => ProjectsHelper::buildProjectsHtml()
+            'github-repos' => [
+                'header' => 'My Repos on Github',
+                'content' => ProjectsHelper::buildGithubProjectsHtml()
             ],
         ];
     }

@@ -43,10 +43,9 @@ class ProjectsHelper
     /**
      * @return string
      */
-    public static function buildProjectsHtml()
+    public static function buildGithubProjectsHtml()
     {
-        $projects = self::getProjects();
-        $githubProjects = (is_array($projects) && isset($projects['github']) ? $projects['github'] : []);
+        $githubProjects = self::getGithubProjects();
 
         usort($githubProjects, function($a, $b) {
             if ($a['stargazers_count'] == $b['stargazers_count']) {
@@ -71,7 +70,7 @@ class ProjectsHelper
             $repoHtml[] = HtmlHelper::element('h3', ['class' => 'repo-name'], $name);
             $repoHtml[] = HtmlHelper::element('p', ['class' => 'repo-description'], $description);
             $repoHtml[] = HtmlHelper::element('div', ['class' => 'repo-stats'], implode('', [
-                HtmlHelper::element('span', ['title' => 'Stars'], HtmlHelper::inlineImg(Config::MEDIA_ROOT_URL(). 'assets/star.svg') . $stars),
+                HtmlHelper::element('span', ['title' => 'Stars'], HtmlHelper::inlineImg(Config::MEDIA_ROOT_URL() . 'assets/star.svg') . $stars),
                 HtmlHelper::element('span', ['title' => 'Watching'], HtmlHelper::inlineImg(Config::MEDIA_ROOT_URL() . 'assets/eye.svg') . $watchers),
                 HtmlHelper::element('span', ['title' => 'Forks'], HtmlHelper::inlineImg(Config::MEDIA_ROOT_URL() . 'assets/fork.svg') . $forks),
             ]));
@@ -84,7 +83,10 @@ class ProjectsHelper
                 ],
                 HtmlHelper::textLink(
                     $repoUrl,
-                    ['style' => 'display: block; text-decoration: none;'],
+                    [
+                        'target' => 'blank',
+                        'style' => 'display: block; text-decoration: none;'
+                    ],
                     implode('', $repoHtml)
                 )
             );
