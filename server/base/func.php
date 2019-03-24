@@ -1,5 +1,9 @@
 <?php
 
+use base\config\Config;
+
+require_once __DIR__ . '/config/Config.php';
+
 /**
  * @return string
  */
@@ -26,9 +30,9 @@ function getUserIP() {
  */
 function getUserLanguage() {
     $lang = substr($_SERVER['HTTP_ACCEPT_LANGUAGE'], 0, 2);
-    return in_array($lang, SUPPORTED_LANGUAGES)
+    return in_array($lang, Config::SUPPORTED_LANGUAGES)
         ? $lang
-        : DEFAULT_LANGUAGE;
+        : Config::DEFAULT_LANGUAGE;
 }
 
 /**

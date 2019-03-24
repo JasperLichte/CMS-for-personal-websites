@@ -1,5 +1,4 @@
 <?php
 
 require_once "func.php";
-require_once "config/env.php";
-require_once "config/settings.php";
+require_once "config/Config.php";

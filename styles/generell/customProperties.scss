@@ -7,7 +7,6 @@ html {
   --header-font-color: #eee;
   --footer-bg-color: rgba(40, 40, 40, 0.9);
   --footer-font-color: #eee;
-
-  --bg-canvas-opacity: 0;
-  --bg-canvas-filter: none;
+  --bg-canvas-opacity: 1;
+  --bg-canvas-filter: grayscale(100%) brightness(10%);
 }

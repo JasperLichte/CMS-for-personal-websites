@@ -5,6 +5,7 @@ namespace templates\components\home;
 require_once __DIR__ . './../../HtmlHelper.php';
 require_once 'HomeSectionsContentHelper.php';
 
+use base\config\Config;
 use templates\components\HomeSectionsContentHelper;
 use templates\HtmlHelper;
 
@@ -69,11 +70,11 @@ class Home
     private static function buildFooter()
     {
         $links = [
-            HtmlHelper::textLink('mailto:' . CREATOR_EMAIL, ['id' => 'creator-email'], 'Send me an eMail!'),
-            HtmlHelper::textLink(REPO_URL, ['id' => 'repo_url'], 'View the code'),
+            HtmlHelper::textLink('mailto:' . Config::CREATOR_EMAIL, ['id' => 'creator-email'], 'Send me an eMail!'),
+            HtmlHelper::textLink(Config::REPO_URL, ['id' => 'repo_url'], 'View the code'),
         ];
         $footerContent = [
-            HtmlHelper::element('span', ['id' => 'creator-name'], CREATOR_NAME),
+            HtmlHelper::element('span', ['id' => 'creator-name'], Config::CREATOR_NAME),
             HtmlHelper::element('div', ['id' => 'links'], implode('', $links)),
         ];
         return HtmlHelper::element(

@@ -2,6 +2,8 @@
 
 namespace templates;
 
+use base\config\Config;
+
 require_once __DIR__ . './../base/base.php';
 
 class TemplatesHelper
@@ -19,7 +21,7 @@ class TemplatesHelper
      * @param string $language
      * @return string
      */
-    static function htmlOpeningTag($language = 'en')
+    static function htmlOpeningTag($language = Config::DEFAULT_LANGUAGE)
     {
         return "<html lang=\"{$language}\">\n";
     }
@@ -45,6 +47,7 @@ class TemplatesHelper
 
     /**
      * @param string $url
+     * @return string
      */
     static function favicon($url = '')
     {
@@ -62,7 +65,7 @@ class TemplatesHelper
             if (!is_string($file)) {
                 continue;
             }
-            $file = STYLES_ROOT_DIR . $file;
+            $file = Config::STYLES_ROOT_DIR() . $file;
             $html .= "<link rel=\"stylesheet\" href=\"{$file}\">\n";
         }
         return $html;
@@ -72,37 +75,31 @@ class TemplatesHelper
      * @param array $files
      * @return string
      */
-    static function jsIncludes($files = [])
-    {
+    static function jsIncludes($files = []) {
         $html = '';
         foreach ($files as $file) {
             if (!is_string($file)) {
                 continue;
             }
-            $file = SCRIPTS_ROOT_DIR . $file;
+            $file = Config::SCRIPTS_ROOT_DIR() . $file;
             $html .= "<script type=\"text/javascript\" src=\"{$file}\"></script>\n";
         }
 
-        $mainJs = (PRODUCTION ? SCRIPTS_ROOT_DIR . 'bundle.js' : ABS_ROOT_DIR . 'build/app.js');
-        $mainJsType = (PRODUCTION ? 'text/javascript' : 'module');
-        $html .= "<script type=\"{$mainJsType}\" src=\"{$mainJs}\"></script>\n";
-
+        $html .= Config::MAIN_JS_FILE_IMPORT();
         return $html;
     }
 
     /**
      * @return string
      */
-    static function inlineJs($data = [])
-    {
+    static function inlineJs() {
         return "" .
-            "<script>\n" .
+            "<script>" .
             "window.addEventListener('load', function() {
                 document.body.classList.remove('preload')
             });" .
-            "console.info('" . implode(self::copyRightContent(), '') . "');" .
-            "window.__CONF = '" . str_replace("'", '', \json_encode(self::getConf())) . "';" .
-            "window.__DATA = '" . str_replace("'", '', \json_encode($data)) . "';" .
+            self::copyRightConsoleLog() .
+            "window.__CONF = '" . str_replace("'", '', \json_encode(Config::getConfArray())) . "';" .
             "</script>";
     }
 
@@ -118,14 +115,22 @@ class TemplatesHelper
     }
 
     /**
+     * @return string
+     */
+    static function copyRightConsoleLog()
+    {
+        return "console.info('" . implode('', self::copyRightContent()) . "');";
+    }
+
+    /**
      * @return array
      */
     static function copyRightContent()
     {
         return [
             'This software belongs to: ',
-            CREATOR_NAME . ' ',
-            '(' . CREATOR_EMAIL . ')',
+            Config::CREATOR_NAME . ' ',
+            '(' . Config::CREATOR_EMAIL . ')',
         ];
     }
 
@@ -151,7 +156,7 @@ class TemplatesHelper
             self::metas() .
             self::title($title) .
             self::cssIncludes($cssFiles) .
-            self::favicon(FAVICON_URL) .
+            self::favicon(Config::FAVICON_URL()) .
             self::HEAD_CLOSING_TAG .
             self::BODY_OPENING_TAG .
             self::inlineJs($data) .
@@ -167,26 +172,13 @@ class TemplatesHelper
      */
     static function getTitleByPageName($page = '')
     {
-        if (!defined('APP_NAME')) {
+        if (!Config::APP_NAME || !strlen(Config::APP_NAME)) {
             return $page;
         }
         if (!!strlen($page)) {
-            return APP_NAME . ' | ' . $page;
+            return Config::APP_NAME . ' | ' . $page;
         }
-        return APP_NAME;
-    }
-
-    private static function getConf()
-    {
-        return [
-            'APP_NAME'        => APP_NAME,
-            'PRODUCTION'      => (int)PRODUCTION,
-            'REPO_URL'        => REPO_URL,
-            'VERSION'         => VERSION,
-            'BG_ANIMATION'    => (int)BG_ANIMATION,
-            'COLOR_ANIMATION' => (int)COLOR_ANIMATION,
-            'COLOR_ANIMATION_DELAY' => (int)COLOR_ANIMATION_DELAY,
-        ];
+        return Config::APP_NAME;
     }
 
 }
