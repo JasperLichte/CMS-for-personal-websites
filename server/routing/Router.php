@@ -26,6 +26,6 @@ class Router
             default:
                 return new Err404();
         }
-}
+    }
 
 }
