@@ -5,6 +5,10 @@ namespace templates;
 
 class HtmlHelper
 {
+
+
+    const DEFAULT_JS_TYPE = 'text/javascript';
+
     /**
      * @param string $tagName
      * @param array $attribs
@@ -51,6 +55,50 @@ class HtmlHelper
             $content,
             $escapeContent
         );
+    }
+
+    /**
+     * @param string $js
+     * @param string $type
+     * @param array $attribs
+    */
+    public static function script($js = '')
+    {
+        return self::element(
+            'script',
+            ['type' => self::DEFAULT_JS_TYPE],
+            $js
+        );
+    }
+
+    /**
+     * @param string $src
+     * @param string $type
+     */
+    public static function jsImport($src, $type = self::DEFAULT_JS_TYPE)
+    {
+        return self::element(
+            'script',
+            [
+                'src' => $src,
+                'type' => $type,
+            ]
+        );
+    }
+
+    /**
+     * @param string $url
+     */
+    public static function favicon($url)
+    {
+        return self::element('link', ['rel' => 'icon', 'href' => $url, 'type' => 'image/x-icon']);
+    }
+
+    /**
+     * @param string $title
+     */
+    public static function title($title) {
+        return self::element('title', [], $title);
     }
 
     /**

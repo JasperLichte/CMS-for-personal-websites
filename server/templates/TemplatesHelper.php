@@ -11,34 +11,20 @@ class TemplatesHelper
 
     const DOCTYPE = "<!DOCTYPE html>\n";
     const CHARSET = "UTF-8";
-    const HEAD_OPENING_TAG = "<head>\n";
-    const HEAD_CLOSING_TAG = "</head>\n";
-    const BODY_OPENING_TAG = "<body class=\"preload\">\n";
-    const BODY_CLOSING_TAG = "</body>\n";
-    const HTML_CLOSING_TAG = '</html>';
 
     /**
      * @param string $language
      * @return string
      */
-    static function htmlOpeningTag($language = Config::DEFAULT_LANGUAGE)
+    private static function htmlOpeningTag($language = Config::DEFAULT_LANGUAGE)
     {
         return "<html lang=\"{$language}\">\n";
     }
 
     /**
-     * @param string $title
      * @return string
      */
-    static function title($title = '')
-    {
-        return "<title>{$title}</title>\n";
-    }
-
-    /**
-     * @return string
-     */
-    static function metas()
+    private static function metas()
     {
         return
             "<meta charset=\"" . self::CHARSET . "\">\n" .
@@ -46,19 +32,10 @@ class TemplatesHelper
     }
 
     /**
-     * @param string $url
-     * @return string
-     */
-    static function favicon($url = '')
-    {
-        return '<link rel="icon" href="' . $url . '" type="image/x-icon" />';
-    }
-
-    /**
      * @param array $files
      * @return string
      */
-    static function cssIncludes($files = [])
+    private static function cssIncludes($files = [])
     {
         $html = '';
         foreach ($files as $file) {
@@ -75,47 +52,46 @@ class TemplatesHelper
      * @param array $files
      * @return string
      */
-    static function jsIncludes($files = []) {
+    private static function jsIncludes($files = []) {
         $html = '';
         foreach ($files as $file => $fileType) {
             if (!is_string($file) || !is_string($fileType)) {
                 continue;
             }
             $file = Config::SCRIPTS_ROOT_DIR() . $file;
-            $html .= "<script type=\"" . $fileType . "\" src=\"{$file}\"></script>\n";
+            $html .= HtmlHelper::jsImport($file, $fileType);
         }
         return $html;
     }
 
     /**
-     * @param string $file
+     * @param string $fileSrc
      * @return string
      */
-    static function mainJsInclude($file) {
-        if (!is_string($file) || !strlen($file)) {
+    private static function mainJsInclude($fileSrc) {
+        if (!is_string($fileSrc) || !strlen($fileSrc)) {
             return '';
         }
-        return "<script type=\"" . Config::MAIN_JS_FILE_TYPE() . "\" src=\"{$file}\"></script>\n";
+        return HtmlHelper::jsImport($fileSrc, Config::MAIN_JS_FILE_TYPE());
     }
 
     /**
      * @return string
      */
-    static function inlineJs() {
-        return "" .
-            "<script>" .
+    private static function inlineJs() {
+        return HtmlHelper::script(
             "window.addEventListener('load', function() {
                 document.body.classList.remove('preload')
             });" .
             self::copyRightConsoleLog() .
-            "window.__CONF = '" . str_replace("'", '', \json_encode(Config::getConfArray())) . "';" .
-            "</script>";
+            "window.__CONF = '" . str_replace("'", '', \json_encode(Config::getConfArray())) . "';"
+        );
     }
 
     /**
      * @return string
      */
-    static function copyRightComment()
+    private static function copyRightComment()
     {
         return
             "\n<!--\n\n" .
@@ -126,7 +102,7 @@ class TemplatesHelper
     /**
      * @return string
      */
-    static function copyRightConsoleLog()
+    private static function copyRightConsoleLog()
     {
         return "console.info('" . implode('', self::copyRightContent()) . "');";
     }
@@ -134,7 +110,7 @@ class TemplatesHelper
     /**
      * @return array
      */
-    static function copyRightContent()
+    private static function copyRightContent()
     {
         return [
             'This software belongs to: ',
@@ -151,37 +127,46 @@ class TemplatesHelper
      * @param string $mainJS
      * @return string
      */
-    static function getHtml(
+    public static function getHtml(
         $content = '',
         $title = '',
         $cssFiles = [],
         $jsFiles = [],
         $mainJS = ''
     ) {
+
         return
             self::DOCTYPE .
             self::copyRightComment() .
-            self::htmlOpeningTag(getUserLanguage()) .
-            self::HEAD_OPENING_TAG .
-            self::metas() .
-            self::title($title) .
-            self::cssIncludes($cssFiles) .
-            self::favicon(Config::FAVICON_URL()) .
-            self::HEAD_CLOSING_TAG .
-            self::BODY_OPENING_TAG .
-            self::inlineJs() .
-            $content . "\n" .
-            self::BODY_CLOSING_TAG .
-            self::jsIncludes($jsFiles) .
-            self::mainJsInclude($mainJS) .
-            self::HTML_CLOSING_TAG;
+            HtmlHelper::element(
+                'html',
+                ['lang' => getUserLanguage()],
+                (
+                    HtmlHelper::element(
+                        'head',
+                        [],
+                        self::metas() .
+                        HtmlHelper::title($title) .
+                        self::cssIncludes($cssFiles) .
+                        HtmlHelper::favicon(Config::FAVICON_URL())
+                    ) .
+                    HtmlHelper::element(
+                        'body',
+                        ['class' => 'preload'],
+                        self::inlineJs() .
+                        $content .
+                        self::jsIncludes($jsFiles) .
+                        self::mainJsInclude($mainJS)
+                    )
+                )
+            );
     }
 
     /**
      * @param string $page
      * @return string
      */
-    static function getTitleByPageName($page = '')
+    public static function getTitleByPageName($page = '')
     {
         if (!Config::APP_NAME || !strlen(Config::APP_NAME)) {
             return $page;
