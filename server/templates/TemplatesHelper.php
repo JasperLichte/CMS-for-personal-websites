@@ -17,8 +17,11 @@ class TemplatesHelper
      * @param string $language
      * @return string
      */
-    private static function htmlOpeningTag($language = Config::DEFAULT_LANGUAGE)
+    private static function htmlOpeningTag($language = '')
     {
+        if (!strlen($language)) {
+            $language = Config::get('DEFAULT_LANGUAGE');
+        }
         return "<html lang=\"{$language}\">\n";
     }
 
@@ -115,8 +118,8 @@ class TemplatesHelper
     {
         return [
             'This software belongs to: ',
-            Config::CREATOR_NAME . ' ',
-            '(' . Config::CREATOR_EMAIL . ')',
+            Config::get('CREATOR_NAME') . ' ',
+            '(' . Config::get('CREATOR_EMAIL') . ')',
         ];
     }
 
@@ -169,13 +172,13 @@ class TemplatesHelper
      */
     public static function getTitleByPageName($page = '')
     {
-        if (!Config::APP_NAME || !strlen(Config::APP_NAME)) {
+        if (!Config::get('APP_NAME') || !strlen(Config::get('APP_NAME'))) {
             return $page;
         }
         if (!!strlen($page)) {
-            return Config::APP_NAME . ' | ' . $page;
+            return Config::get('APP_NAME') . ' | ' . $page;
         }
-        return Config::APP_NAME;
+        return Config::get('APP_NAME');
     }
 
 }

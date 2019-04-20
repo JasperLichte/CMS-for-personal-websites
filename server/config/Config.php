@@ -2,33 +2,19 @@
 
 namespace base\config;
 
+use database\Connection;
+use database\QueryHelper;
+use helpers\RequestHelper;
+
+require_once __DIR__ . './../base/base.php';
+
 class Config
 {
-    const CREATOR_NAME = 'Jasper Lichte';
-
-    const CREATOR_EMAIL = 'jasper@lichte.info';
-
-    const CREATOR_GITHUB_URL = 'https://github.com/JasperLichte';
-
-    const APP_NAME = 'Jasper Lichte';
-
-    const BG_ANIMATION = false;
-
-    const COLOR_ANIMATION = false;
-
-    const COLOR_ANIMATION_DELAY = 20000;
-
-    const PRODUCTION = false;
-
-    const VERSION = '0.1.0';
-
-    const DEFAULT_LANGUAGE = 'en';
+    private static $settings = [];
+    private static $settingsLoaded = false;
+    private static $absRootDir = '';
 
     const SUPPORTED_LANGUAGES = ['en', 'de', 'es', 'fr'];
-
-    const REPO_URL = 'https://github.com/JasperLichte/personal-website';
-
-    private static $absRootDir = '';
 
     /**
      * @return string
@@ -62,7 +48,7 @@ class Config
      */
     public static function MAIN_JS_FILE()
     {
-        return (self::PRODUCTION
+        return (self::PRODUCTION()
             ? self::SCRIPTS_ROOT_DIR() . 'bundle.js'
             : self::ABS_ROOT_DIR() . 'build/app.js');
     }
@@ -72,7 +58,7 @@ class Config
      */
     public static function MAIN_JS_FILE_TYPE()
     {
-        return (self::PRODUCTION
+        return (self::PRODUCTION()
             ? 'text/javascript'
             : 'module');
     }
@@ -102,50 +88,79 @@ class Config
     }
 
     /**
+     * @return boolean
+     */
+    public static function PRODUCTION()
+    {
+        if (!RequestHelper::isLocalRequest()) {
+            return true;
+        }
+        return self::get('PRODUCTION');
+    }
+
+    /**
+     * @return void
+     */
+    private static function loadSettings()
+    {
+        $settings = QueryHelper::getTableFields(
+            Connection::getInstance(),
+            'settings',
+            ['name', 'value', 'type']
+        );
+
+        foreach ($settings as $entry) {
+            self::$settings[$entry['name']] = [
+                'value' => $entry['value'],
+                'type'  => self::parseSetting($entry['value'], $entry['type']),
+            ];
+        }
+        self::$settingsLoaded = true;
+    }
+
+    /**
+     * @param $value
+     * @param string $type
+     * @return bool|int
+     */
+    private static function parseSetting($value, $type)
+    {
+        switch ($type) {
+            case 'bool':
+            case 'boolean':
+                return !!$value;
+            case 'int':
+                return (int)$value;
+        }
+
+    }
+
+    /**
+     * @param string $settingName
+     * @return mixed
+     */
+    public static function get($settingName)
+    {
+        if (!self::$settingsLoaded) {
+            self::loadSettings();
+        }
+        return (isset(self::$settings[$settingName])
+            ? self::$settings[$settingName]['value']
+            : null);
+    }
+
+    /**
      * @return array
      */
     public static function getConfArray()
     {
-        $arr = [
-            'APP_NAME'              => [
-                'type'  => 'string',
-                'value' => self::APP_NAME,
-            ],
-            'COLOR_ANIMATION'       => [
-                'type'  => 'bool',
-                'value' => self::COLOR_ANIMATION,
-            ],
-            'COLOR_ANIMATION_DELAY' => [
-                'type'  => 'int',
-                'value' => self::COLOR_ANIMATION_DELAY,
-            ],
-            'BG_ANIMATION'          => [
-                'type'  => 'bool',
-                'value' => self::BG_ANIMATION,
-            ],
-            'PRODUCTION'            => [
-                'type'  => 'bool',
-                'value' => self::PRODUCTION,
-            ],
-            'REPO_URL'              => [
-                'type'  => 'string',
-                'value' => self::REPO_URL,
-            ],
-            'VERSION'               => [
-                'type'  => 'string',
-                'value' => self::VERSION,
-            ],
-            'ABS_ROOT_DIR'          => [
-                'type'  => 'string',
-                'value' => self::ABS_ROOT_DIR(),
-            ],
-        ];
+        if (!self::$settingsLoaded) {
+            self::loadSettings();
+        }
 
-        foreach ($arr as $key => $entry) {
-            if (!isset($entry['type']) || !isset($entry['value'])) {
-                unset($arr[$key]);
-            }
-            if (in_array($entry['type'], ['int', 'bool', 'boolean'])) {
+        $arr = [];
+        foreach (self::$settings as $key => $entry) {
+            if (in_array($entry['type'], ['bool', 'boolean'])) {
                 $arr[$key]['value'] = (int)$entry['value'];
             }
         }

@@ -81,11 +81,11 @@ class Home extends Component
     private static function buildFooter()
     {
         $links = [
-            HtmlHelper::textLink('mailto:' . Config::CREATOR_EMAIL, ['id' => 'creator-email'], 'Send me an eMail!'),
-            HtmlHelper::textLink(Config::REPO_URL, ['id' => 'repo_url'], 'View the code'),
+            HtmlHelper::textLink('mailto:' . Config::get('CREATOR_EMAIL'), ['id' => 'creator-email'], 'Send me an eMail!'),
+            HtmlHelper::textLink(Config::get('REPO_URL'), ['id' => 'repo_url'], 'View the code'),
         ];
         $footerContent = [
-            HtmlHelper::element('span', ['id' => 'creator-name'], Config::CREATOR_NAME),
+            HtmlHelper::element('span', ['id' => 'creator-name'], Config::get('CREATOR_NAME')),
             HtmlHelper::element('div', ['id' => 'links'], implode('', $links)),
         ];
         return HtmlHelper::element(
