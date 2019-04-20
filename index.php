@@ -5,6 +5,9 @@ use templates\TemplatesHelper;
 
 require_once 'server/routing/Router.php';
 require_once 'server/templates/TemplatesHelper.php';
+require_once 'server/database/Connection.php';
+
+$db = \database\Connection::getInstance();
 
 $component = Router::getComponentByRequest();
 

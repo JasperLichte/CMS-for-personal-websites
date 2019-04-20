@@ -2,10 +2,11 @@
 
 namespace database;
 
-require_once 'credentials.php';
-
+use base\config\Credentials;
 use Exception;
 use mysqli;
+
+require_once __DIR__ . './../config/Credentials.php';
 
 class Connection {
 
@@ -32,10 +33,10 @@ class Connection {
     private static function initConnection(){
         $db = self::get();
         $db->dbConn = new mysqli(
-            DB_HOST,
-            DB_USERNAME,
-            DB_PASSWORD,
-            DB_NAME
+            Credentials::DB_HOST,
+            Credentials::DB_USERNAME,
+            Credentials::DB_PASSWORD,
+            Credentials::DB_NAME
         );
         $db->dbConn->set_charset('utf8');
         return $db;

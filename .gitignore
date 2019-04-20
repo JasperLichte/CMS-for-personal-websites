@@ -3,6 +3,6 @@ build
 assets/scripts/bundle.js
 assets/styles/bundle.css
 assets/styles/bundle.css.map
-server/database/credentials.php
+server/config/Credentials.php
 
 .idea
