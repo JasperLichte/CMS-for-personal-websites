@@ -3,6 +3,7 @@
 namespace templates;
 
 use base\config\Config;
+use helpers\RequestHelper;
 
 require_once __DIR__ . './../base/base.php';
 
@@ -140,7 +141,7 @@ class TemplatesHelper
             self::copyRightComment() .
             HtmlHelper::element(
                 'html',
-                ['lang' => getUserLanguage()],
+                ['lang' => RequestHelper::getRequestLanguage()],
                 (
                     HtmlHelper::element(
                         'head',

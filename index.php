@@ -1,14 +1,13 @@
 <?php
 
+use helpers\RequestHelper;
 use routing\Router;
 use templates\TemplatesHelper;
 
+require_once 'server/base/base.php';
 require_once 'server/routing/Router.php';
-require_once 'server/templates/TemplatesHelper.php';
-require_once 'server/database/Connection.php';
 
-$db = \database\Connection::getInstance();
-
+RequestHelper::saveRequest();
 $component = Router::getComponentByRequest();
 
 echo

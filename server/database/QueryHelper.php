@@ -10,13 +10,14 @@ class QueryHelper
     /**
      * @param mysqli $link
      * @param string $query
-     * @return array|null
+     * @return array|boolean|null
      */
-    public static function query(mysqli $link, $query) {
+    public static function query(mysqli $link, $query)
+    {
         $res = mysqli_query($link, $query);
 
-        if (!$res) {
-            die("Database query failed: " . mysqli_error($link));
+        if (is_bool($res)) {
+            return $res;
         }
 
         $results = [];
@@ -58,6 +59,23 @@ class QueryHelper
         }
 
         return self::query($link, $query);
+    }
+
+    /**
+     * @param mysqli $link
+     * @param string $table
+     * @param array $pairs
+     */
+    public static function insertTablePairs(
+        mysqli $link,
+        $table,
+        $pairs
+    ) {
+        return self::query(
+            $link,
+            'INSERT INTO ' . $table . ' (' . implode(',', array_keys($pairs)) . ') VALUES (' . implode(',', $pairs) . ')'
+        );
+
     }
 
 }
