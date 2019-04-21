@@ -138,7 +138,7 @@ class Config
         if (!self::$settingsLoaded) {
             self::loadSettings();
         }
-        return (isset(self::$settings[$settingName])
+        return (isset(self::$settings[$settingName]) && isset(self::$settings[$settingName]['value'])
             ? self::$settings[$settingName]['value']
             : null);
     }
