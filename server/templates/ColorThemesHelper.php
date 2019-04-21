@@ -12,12 +12,18 @@ require_once __DIR__ . './../base/base.php';
 class ColorThemesHelper
 {
 
+    const FALLBACK_THEME_NAME = 'classic';
+
     /**
      * @return array
      */
     public static function getDefaultTheme()
     {
         $defaultThemeName = Config::get('DEFAULT_COLOR_THEME');
+        if (!$defaultThemeName) {
+            $defaultThemeName = self::FALLBACK_THEME_NAME;
+        }
+
         $db = Connection::getInstance();
         return QueryHelper::getTableFields(
             $db,
