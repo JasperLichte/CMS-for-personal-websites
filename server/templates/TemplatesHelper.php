@@ -7,6 +7,7 @@ use helpers\RequestHelper;
 use templates\components\Component;
 
 require_once __DIR__ . './../base/base.php';
+require_once __DIR__ . '/ColorThemesHelper.php';
 
 class TemplatesHelper
 {
@@ -122,7 +123,12 @@ class TemplatesHelper
             self::copyRightComment() .
             HtmlHelper::element(
                 'html',
-                ['lang' => RequestHelper::getRequestLanguage()],
+                [
+                    'lang'  => RequestHelper::getRequestLanguage(),
+                    'style' => ColorThemesHelper::getThemeInlineStyles(
+                        ColorThemesHelper::getDefaultTheme()
+                    ),
+                ],
                 (
                     HtmlHelper::element(
                         'head',
@@ -136,7 +142,7 @@ class TemplatesHelper
                         'body',
                         [
                             'class' => 'preload',
-                            'id' => 'p-' . strtolower(str_replace(' ', '', $component::ID)),
+                            'id'    => 'p-' . strtolower(str_replace(' ', '', $component::ID)),
                         ],
                         self::inlineJs() .
                         $component::build() .

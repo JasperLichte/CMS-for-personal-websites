@@ -59,8 +59,7 @@ class HtmlHelper
 
     /**
      * @param string $js
-     * @param string $type
-     * @param array $attribs
+     * @return string
     */
     public static function script($js = '')
     {
@@ -74,6 +73,7 @@ class HtmlHelper
     /**
      * @param string $src
      * @param string $type
+     * @return string
      */
     public static function jsImport($src, $type = self::DEFAULT_JS_TYPE)
     {
@@ -88,6 +88,7 @@ class HtmlHelper
 
     /**
      * @param string $url
+     * @return string
      */
     public static function favicon($url)
     {
@@ -96,6 +97,7 @@ class HtmlHelper
 
     /**
      * @param string $title
+     * @return string
      */
     public static function title($title) {
         return self::element('title', [], $title);
