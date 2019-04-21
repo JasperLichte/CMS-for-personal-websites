@@ -98,13 +98,14 @@ class Config
         $settings = QueryHelper::getTableFields(
             Connection::getInstance(),
             'settings',
-            ['name', 'value', 'type']
+            ['name', 'value', 'type', 'send_to_client']
         );
 
         foreach ($settings as $entry) {
             self::$settings[$entry['name']] = [
-                'value' => self::parseSetting($entry['value'], $entry['type']),
-                'type'  => $entry['type'],
+                'value'          => self::parseSetting($entry['value'], $entry['type']),
+                'type'           => $entry['type'],
+                'send_to_client' => $entry['send_to_client']
             ];
         }
         self::$settingsLoaded = true;
@@ -153,6 +154,10 @@ class Config
 
         $arr = [];
         foreach (self::$settings as $key => $entry) {
+            if (!isset($entry['send_to_client']) || !$entry['send_to_client']) {
+                continue;
+            }
+
             $arr[$key] = [
                 'value' => $entry['value'],
                 'type' => $entry['type']

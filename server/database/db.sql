@@ -78,23 +78,24 @@ CREATE TABLE `requests` (
 CREATE TABLE `settings` (
   `name` varchar(127) NOT NULL,
   `value` varchar(255) NOT NULL,
-  `type` enum('int','string','bool') NOT NULL
+  `type` enum('int','string','bool') NOT NULL,
+  `send_to_client` enum('0','1') NOT NULL DEFAULT '0'
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
-INSERT INTO `settings` (`name`, `value`, `type`) VALUES
-('CREATOR_NAME', 'Jasper Lichte', 'string'),
-('CREATOR_EMAIL', 'jasper@lichte.info', 'string'),
-('CREATOR_GITHUB_URL', 'https://github.com/JasperLichte', 'string'),
-('APP_NAME', 'Jasper Lichte', 'string'),
-('BG_ANIMATION', '0', 'bool'),
-('COLOR_ANIMATION', '0', 'bool'),
-('COLOR_ANIMATION_DELAY', '10000', 'int'),
-('PRODUCTION', '0', 'bool'),
-('VERSION', '0.1.0', 'string'),
-('DEFAULT_LANGUAGE', 'en', 'string'),
-('REPO_URL', 'https://github.com/JasperLichte/personal-website', 'string'),
-('FAVICON_URL', 'https://www.media.lichte.info/assets/favicon.ico', 'string'),
-('DEFAULT_COLOR_THEME', 'classic', 'string');
+INSERT INTO `settings` (`name`, `value`, `type`, `send_to_client`) VALUES
+('CREATOR_NAME', 'Jasper Lichte', 'string', '0'),
+('CREATOR_EMAIL', 'jasper@lichte.info', 'string', '0'),
+('CREATOR_GITHUB_URL', 'https://github.com/JasperLichte', 'string', '0'),
+('APP_NAME', 'Jasper Lichte', 'string', '0'),
+('BG_ANIMATION', '1', 'bool', '1'),
+('COLOR_ANIMATION', '0', 'bool', '1'),
+('COLOR_ANIMATION_DELAY', '10000', 'int', '1'),
+('PRODUCTION', '0', 'bool', '1'),
+('VERSION', '0.1.0', 'string', '0'),
+('DEFAULT_LANGUAGE', 'en', 'string', '0'),
+('REPO_URL', 'https://github.com/JasperLichte/personal-website', 'string', '0'),
+('FAVICON_URL', 'https://www.media.lichte.info/assets/favicon.ico', 'string', '0'),
+('DEFAULT_COLOR_THEME', 'funky', 'string', '1');
 
 
 ALTER TABLE `color_themes`
