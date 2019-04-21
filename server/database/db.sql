@@ -9,6 +9,15 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 
+CREATE TABLE `home_sections` (
+  `section_name` varchar(127) NOT NULL,
+  `section_index` int(11) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+INSERT INTO `home_sections` (`section_name`, `section_index`) VALUES
+('hello', -1),
+('github-repos', 1);
+
 CREATE TABLE `requests` (
   `id` int(11) NOT NULL,
   `ip` varchar(27) NOT NULL,
@@ -23,6 +32,22 @@ CREATE TABLE `settings` (
   `type` enum('int','string','bool','') NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
+INSERT INTO `settings` (`name`, `value`, `type`) VALUES
+('CREATOR_NAME', 'Jasper Lichte', 'string'),
+('CREATOR_EMAIL', 'jasper@lichte.info', 'string'),
+('CREATOR_GITHUB_URL', 'https://github.com/JasperLichte', 'string'),
+('APP_NAME', 'Jasper Lichte', 'string'),
+('BG_ANIMATION', '0', 'bool'),
+('COLOR_ANIMATION', '0', 'bool'),
+('COLOR_ANIMATION_DELAY', '20000', 'int'),
+('PRODUCTION', '0', 'bool'),
+('VERSION', '0.1.0', 'string'),
+('DEFAULT_LANGUAGE', 'en', 'string'),
+('REPO_URL', 'https://github.com/JasperLichte/personal-website', 'string');
+
+
+ALTER TABLE `home_sections`
+  ADD PRIMARY KEY (`section_name`);
 
 ALTER TABLE `requests`
   ADD PRIMARY KEY (`id`);
