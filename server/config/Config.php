@@ -80,14 +80,6 @@ class Config
     }
 
     /**
-     * @return string
-     */
-    public static function FAVICON_URL()
-    {
-        return self::MEDIA_ROOT_URL() . 'assets/favicon.ico';
-    }
-
-    /**
      * @return boolean
      */
     public static function PRODUCTION()

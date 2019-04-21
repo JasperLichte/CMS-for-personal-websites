@@ -130,7 +130,7 @@ class TemplatesHelper
                         self::metas() .
                         HtmlHelper::title(self::getTitleByPageName($component::NAME)) .
                         self::cssIncludes($component::NEEDED_CSS_FILES) .
-                        HtmlHelper::favicon(Config::FAVICON_URL())
+                        HtmlHelper::favicon(Config::get('FAVICON_URL'))
                     ) .
                     HtmlHelper::element(
                         'body',
