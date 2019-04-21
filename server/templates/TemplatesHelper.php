@@ -4,6 +4,7 @@ namespace templates;
 
 use base\config\Config;
 use helpers\RequestHelper;
+use templates\components\Component;
 
 require_once __DIR__ . './../base/base.php';
 
@@ -12,18 +13,6 @@ class TemplatesHelper
 
     const DOCTYPE = "<!DOCTYPE html>\n";
     const CHARSET = "UTF-8";
-
-    /**
-     * @param string $language
-     * @return string
-     */
-    private static function htmlOpeningTag($language = '')
-    {
-        if (!strlen($language)) {
-            $language = Config::get('DEFAULT_LANGUAGE');
-        }
-        return "<html lang=\"{$language}\">\n";
-    }
 
     /**
      * @return string
@@ -124,21 +113,10 @@ class TemplatesHelper
     }
 
     /**
-     * @param string $content
-     * @param string $title
-     * @param array $cssFiles
-     * @param array $jsFiles
-     * @param string $mainJS
+     * @param Component $component
      * @return string
      */
-    public static function getHtml(
-        $content = '',
-        $title = '',
-        $cssFiles = [],
-        $jsFiles = [],
-        $mainJS = ''
-    ) {
-
+    public static function getHtml(Component $component) {
         return
             self::DOCTYPE .
             self::copyRightComment() .
@@ -150,17 +128,20 @@ class TemplatesHelper
                         'head',
                         [],
                         self::metas() .
-                        HtmlHelper::title($title) .
-                        self::cssIncludes($cssFiles) .
+                        HtmlHelper::title(self::getTitleByPageName($component::NAME)) .
+                        self::cssIncludes($component::NEEDED_CSS_FILES) .
                         HtmlHelper::favicon(Config::FAVICON_URL())
                     ) .
                     HtmlHelper::element(
                         'body',
-                        ['class' => 'preload'],
+                        [
+                            'class' => 'preload',
+                            'id' => 'p-' . strtolower(str_replace(' ', '', $component::ID)),
+                        ],
                         self::inlineJs() .
-                        $content .
-                        self::jsIncludes($jsFiles) .
-                        self::mainJsInclude($mainJS)
+                        $component::build() .
+                        self::jsIncludes($component::NEEDED_JS_FILES) .
+                        self::mainJsInclude($component::MAIN_JS_FILE())
                     )
                 )
             );

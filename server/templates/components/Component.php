@@ -4,6 +4,7 @@ namespace templates\components;
 
 class Component
 {
+    const ID = '';
 
     const NAME = '';
 

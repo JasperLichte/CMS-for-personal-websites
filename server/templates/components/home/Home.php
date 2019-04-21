@@ -14,6 +14,7 @@ use templates\HtmlHelper;
 class Home extends Component
 {
 
+    const ID = 'home';
     const NAME = 'Home';
 
     /**

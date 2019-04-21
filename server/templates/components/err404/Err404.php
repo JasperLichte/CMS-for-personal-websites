@@ -10,6 +10,7 @@ use templates\HtmlHelper;
 
 class Err404 extends Component
 {
+    const ID = '404';
     const NAME = '404';
 
     /**

@@ -23,6 +23,7 @@ class Router
             case 'home':
             case '':
                 return new Home();
+            case '404':
             default:
                 return new Err404();
         }

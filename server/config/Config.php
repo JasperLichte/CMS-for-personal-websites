@@ -111,8 +111,8 @@ class Config
 
         foreach ($settings as $entry) {
             self::$settings[$entry['name']] = [
-                'value' => $entry['value'],
-                'type'  => self::parseSetting($entry['value'], $entry['type']),
+                'value' => self::parseSetting($entry['value'], $entry['type']),
+                'type'  => $entry['type'],
             ];
         }
         self::$settingsLoaded = true;
@@ -128,11 +128,12 @@ class Config
         switch ($type) {
             case 'bool':
             case 'boolean':
-                return !!$value;
+            return (bool)$value;
             case 'int':
                 return (int)$value;
+            default:
+                return $value;
         }
-
     }
 
     /**
@@ -160,6 +161,10 @@ class Config
 
         $arr = [];
         foreach (self::$settings as $key => $entry) {
+            $arr[$key] = [
+                'value' => $entry['value'],
+                'type' => $entry['type']
+            ];
             if (in_array($entry['type'], ['bool', 'boolean'])) {
                 $arr[$key]['value'] = (int)$entry['value'];
             }
