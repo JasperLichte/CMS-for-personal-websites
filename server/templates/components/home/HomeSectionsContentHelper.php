@@ -24,7 +24,7 @@ class HomeSectionsContentHelper
             Connection::getInstance(),
             'home_sections',
             ['section_name', 'section_index'],
-            '',
+            'section_index >= 0',
             'section_index ASC'
         );
 
