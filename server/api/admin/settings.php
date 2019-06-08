@@ -7,12 +7,12 @@ require_once __DIR__ . './../../api/Helpers/ValueNames.php';
 
 $colorThemeId = (isset($_POST[ValueNames::COLOR_THEME_ID]) ? (int)$_POST[ValueNames::COLOR_THEME_ID] : 0);
 
-echo $colorThemeId;
 if ($colorThemeId) {
     \database\QueryHelper::query(
         \database\Connection::getInstance(),
         'UPDATE settings SET value = ' . $colorThemeId . ' WHERE name = "DEFAULT_COLOR_THEME"'
     );
 }
-header('Location: http://localhost/github/personal-website/?p=admin'); // TODO
+
+header('Location: ' . \helpers\RequestHelper::getPreviousUrl());
 exit();

@@ -80,4 +80,12 @@ class RequestHelper
         }
     }
 
+    /**
+     * @return string
+     */
+    public static function getPreviousUrl()
+    {
+        return $_SERVER['HTTP_REFERER'];
+    }
+
 }
