@@ -63,8 +63,35 @@ class QueryHelper
 
     /**
      * @param mysqli $link
-     * @param string $table
-     * @param array $pairs
+     * @param $table
+     * @param array $fields
+     * @param string $condition
+     * @param string $order
+     * @return array
+     */
+    public static  function getTableFieldsElement(
+        mysqli $link,
+        $table,
+        $fields = [],
+        $condition = '',
+        $order = ''
+    ) {
+        $res = self::getTableFields(
+            $link,
+            $table,
+            $fields,
+            $condition,
+            $order,
+            1
+        );
+        return reset($res) ?: [];
+    }
+
+    /**
+     * @param mysqli $link
+     * @param $table
+     * @param $pairs
+     * @return array|null
      */
     public static function insertTablePairs(
         mysqli $link,

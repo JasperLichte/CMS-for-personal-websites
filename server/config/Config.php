@@ -30,6 +30,14 @@ class Config
     /**
      * @return string
      */
+    public static function API_ROOT_DIR()
+    {
+        return self::ABS_ROOT_DIR() . 'server/api/';
+    }
+
+    /**
+     * @return string
+     */
     public static function STYLES_ROOT_DIR()
     {
         return self::ABS_ROOT_DIR() . 'assets/styles/';

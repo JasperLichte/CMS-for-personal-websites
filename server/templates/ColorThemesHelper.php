@@ -11,18 +11,12 @@ require_once __DIR__ . './../base/base.php';
 
 class ColorThemesHelper
 {
-
-    const FALLBACK_THEME_NAME = 'classic';
-
     /**
      * @return array
      */
     public static function getDefaultTheme()
     {
-        $defaultThemeName = Config::get('DEFAULT_COLOR_THEME');
-        if (!$defaultThemeName) {
-            $defaultThemeName = self::FALLBACK_THEME_NAME;
-        }
+        $defaultThemeId = (int)Config::get('DEFAULT_COLOR_THEME');
 
         $db = Connection::getInstance();
         return QueryHelper::getTableFields(
@@ -31,7 +25,7 @@ class ColorThemesHelper
              ' INNER JOIN color_themes_values CTV' .
               ' ON CT.id = CTV.theme_id',
             ['CTV.var_name', 'CTV.value'],
-            'CT.name = "' . $db->real_escape_string($defaultThemeName) . '"'
+            'CT.id = ' . $defaultThemeId . ''
         )?:[];
     }
 

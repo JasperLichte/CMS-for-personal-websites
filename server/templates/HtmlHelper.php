@@ -24,7 +24,7 @@ class HtmlHelper
     ) {
         $attribsHtml = '';
         foreach ($attribs as $key => $val) {
-            if (!is_string($key) || !is_string($val)) {
+            if (!is_string($key) || !(is_string($val) || is_numeric($val))) {
                 continue;
             }
             $attribsHtml .= " {$key}=\"{$val}\"";
@@ -138,6 +138,56 @@ class HtmlHelper
     public static function escape($str = '')
     {
         return htmlspecialchars($str);
+    }
+
+    /**
+     * @param string $type
+     * @param array $attribs
+     * @return string
+     */
+    public static function input($type = '', $attribs = [])
+    {
+        return self::element(
+            'input',
+            array_merge($attribs, ['type' => $type])
+        );
+    }
+
+    /**
+     * @param string $name
+     * @param array $attribs
+     * @param array $options
+     * @return string
+     */
+    public static function selectInput($name = '', $attribs = [], $options = [], $preselectedVal = null)
+    {
+        $vals = [];
+        foreach ($options as $option) {
+            if (!isset($option['desc'])
+                || empty($option['desc'])
+                || !is_string($option['desc'])
+                || !isset($option['val'])
+                || empty($option['val'])
+            ) {
+                continue;
+            }
+
+            $attr = ['value' => $option['val']];
+            if ($preselectedVal == $option['val']) {
+                $attr['selected'] = 'selected';
+            }
+            $vals[] = HtmlHelper::element(
+                'option',
+                $attr,
+                $option['desc']
+            );
+        }
+
+        return self::element(
+            'select',
+            array_merge($attribs, ['name' => $name]),
+            implode('', $vals)
+        );
     }
 
 }
