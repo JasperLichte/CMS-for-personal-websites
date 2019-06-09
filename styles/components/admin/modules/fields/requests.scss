@@ -1,0 +1,20 @@
+#requests {
+  table {
+    border-collapse: separate;
+    border-spacing: 0;
+    thead {
+      th {
+        border-bottom: 2px solid var(--content-accent-font-color);
+        text-align: left;
+      }
+    }
+    tr {
+      &:nth-of-type(even) {
+        background: rgba(100, 100, 100, 0.5);
+      }
+      td, th {
+        padding: 0.25rem 0.4rem;
+      }
+    }
+  }
+}

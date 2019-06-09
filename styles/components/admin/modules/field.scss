@@ -1,0 +1,15 @@
+.field {
+  padding: 1rem;
+  margin-bottom: 0.4rem;
+
+  &:last-of-type {
+    margin-bottom: 0;
+  }
+
+  border: 1px solid var(--content-accent-font-color);
+  background-color: var(--content-bg-color);
+  color: var(--content-font-color);
+  overflow-x: scroll;
+}
+
+@import './fields/requests.scss';

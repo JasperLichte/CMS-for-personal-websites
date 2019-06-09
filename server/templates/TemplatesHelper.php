@@ -4,10 +4,11 @@ namespace templates;
 
 use base\config\Config;
 use helpers\RequestHelper;
+use helpers\ColorThemesHelper;
 use templates\components\Component;
 
 require_once __DIR__ . './../base/base.php';
-require_once __DIR__ . '/ColorThemesHelper.php';
+require_once __DIR__ . './../helpers/ColorThemesHelper.php';
 
 class TemplatesHelper
 {
@@ -126,7 +127,7 @@ class TemplatesHelper
                 [
                     'lang'  => RequestHelper::getRequestLanguage(),
                     'style' => ColorThemesHelper::getThemeInlineStyles(
-                        ColorThemesHelper::getDefaultTheme()
+                        ColorThemesHelper::getDefaultThemeValues()
                     ),
                 ],
                 (

@@ -167,7 +167,6 @@ class HtmlHelper
                 || empty($option['desc'])
                 || !is_string($option['desc'])
                 || !isset($option['val'])
-                || empty($option['val'])
             ) {
                 continue;
             }

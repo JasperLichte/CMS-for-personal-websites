@@ -88,4 +88,20 @@ class RequestHelper
         return $_SERVER['HTTP_REFERER'];
     }
 
+    /**
+     * @param null $limit
+     * @return array
+     */
+    public static function getRequests($limit = null)
+    {
+        return QueryHelper::getTableFields(
+            Connection::getInstance(),
+            'requests',
+            ['ip', 'path', 'time', 'language'],
+            '',
+            'id DESC',
+            $limit ? (int)$limit : null
+        ) ?: [];
+    }
+
 }
