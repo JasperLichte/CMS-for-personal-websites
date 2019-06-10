@@ -1,4 +1,5 @@
 # CMS for personal websites
+> Content Management System for YOUR personal website and/or portfolio!
 
 ## Installation:
 After running `npm i`, fire up `npm run build` to start the compilation.
