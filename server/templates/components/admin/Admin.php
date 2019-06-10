@@ -5,13 +5,11 @@ namespace templates\components\admin;
 require_once __DIR__ . './../../../base/base.php';
 require_once __DIR__ . './../../HtmlHelper.php';
 require_once __DIR__ . './../Component.php';
-require_once __DIR__ . './../../../api/Helpers/ValueNames.php';
+require_once __DIR__ . './../../../api/helpers/ValueNames.php';
 require_once __DIR__ . './../../../helpers/ColorThemesHelper.php';
 
 use api\helpers\ValueNames;
 use base\config\Config;
-use database\Connection;
-use database\QueryHelper;
 use helpers\ColorThemesHelper;
 use helpers\RequestHelper;
 use templates\components\Component;
