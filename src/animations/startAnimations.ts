@@ -4,7 +4,8 @@ import Config from "../config/Config.js";
 export default () => {
 
   if (Config.get('BG_ANIMATION')) {
-    new BgCanvasAnimation(<HTMLCanvasElement> document.getElementById('bg-canvas'));
+    const canvas = <HTMLCanvasElement>document.getElementById('bg-canvas')
+    canvas && new BgCanvasAnimation(canvas);
   }
 
 }

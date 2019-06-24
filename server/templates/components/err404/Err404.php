@@ -10,8 +10,9 @@ use templates\HtmlHelper;
 
 class Err404 extends Component
 {
-    const ID = '404';
+    const ID = 'err404';
     const NAME = '404';
+    const WITH_BG_CANVAS = true;
 
     /**
      * @return string
@@ -21,23 +22,13 @@ class Err404 extends Component
         $html = [
             HtmlHelper::element(
                 'h1',
-                [
-                    'style' => 'font-size: 91px; color: #222;',
-                ],
+                [],
                 '404'
             )
         ];
 
-        return HtmlHelper::element(
-            'main',
-            [
-                'style' => 'height: 100vh;
-                            width: 100vw;
-                            display: flex;
-                            justify-content: center;
-                            align-items: center;
-                            flex-direction: column;',
-            ],
+        return parent::buildSkeleton(
+            self::WITH_BG_CANVAS,
             implode('', $html)
         );
     }

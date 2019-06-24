@@ -189,4 +189,22 @@ class HtmlHelper
         );
     }
 
+    /**
+     * @param string $action
+     * @param string $method
+     * @param string $content
+     * @return string
+     */
+    public static function form($action = '', $method = '', $content = '')
+    {
+        return self::element(
+            'form',
+            [
+                'action' => (string)$action,
+                'method' => strtoupper((string)$method),
+            ],
+            $content
+        );
+    }
+
 }

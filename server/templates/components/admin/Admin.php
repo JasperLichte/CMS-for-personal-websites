@@ -36,20 +36,10 @@ class Admin extends Component
             ),
         ];
 
-        return
-            (HtmlHelper::element(
-                'div',
-                ['id' => 'page'],
-                HtmlHelper::element(
-                    'main',
-                    [],
-                    implode('', $html)
-                )
-            ) .
-            HtmlHelper::element(
-                'canvas',
-                ['id' => 'bg-canvas']
-            ));
+        return parent::buildSkeleton(
+            self::WITH_BG_CANVAS,
+            implode('', $html)
+        );
     }
 
     /**
@@ -75,12 +65,9 @@ class Admin extends Component
      */
     private static function buildSettingsForm($html = '')
     {
-        return HtmlHelper::element(
-            'form',
-            [
-                'method' => 'POST',
-                'action' => Config::API_ROOT_DIR() . 'admin/settings.php'
-            ],
+        return HtmlHelper::form(
+            Config::API_ROOT_DIR() . 'admin/settings.php',
+            'POST',
             $html
         );
     }
@@ -164,6 +151,9 @@ class Admin extends Component
         );
     }
 
+    /**
+     * @return string
+     */
     private static function buildBgAnimationInput()
     {
         return HtmlHelper::selectInput(
