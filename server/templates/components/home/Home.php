@@ -61,7 +61,7 @@ class Home extends Component
                     'id'                => 'content-section-' . $key,
                     'data-section-name' => $key,
                 ],
-                $header . $content
+                HtmlHelper::element('div', ['class' => 'border-transition-helper'], $header . $content)
             );
         }
 
