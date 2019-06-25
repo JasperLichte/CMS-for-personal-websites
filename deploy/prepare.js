@@ -20,7 +20,6 @@ const fse = require('fs-extra');
   targetDir: './deploy/dist/',
   dirsToDeploy: [
     'assets',
-    'build',
     'server'
   ],
   filesToDeploy: [
