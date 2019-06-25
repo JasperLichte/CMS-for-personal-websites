@@ -43,7 +43,7 @@ class HomeSectionsContentHelper
     {
         $header = '';
         $content = '';
-        switch ($sectionName) {
+        switch (strtolower((string)$sectionName)) {
             case self::HELLO:
                 $header = 'Hi';
                 $content = '<h1>huhu</h1>';

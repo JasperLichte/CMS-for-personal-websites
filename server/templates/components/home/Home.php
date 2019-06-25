@@ -54,6 +54,10 @@ class Home extends Component
                 ? $section['content']
                 : '');
 
+            if (!$header || !$content) {
+                continue;
+            }
+
             $sectionsHtml[] = HtmlHelper::element(
                 'section',
                 [

@@ -13,7 +13,12 @@
           margin-bottom: 0;
         }
         .repo-name {
-          text-transform: uppercase;  
+          text-transform: uppercase;
+
+          & > .repo-main-language {
+            text-transform: initial;
+            font-size: .8em;
+          }
         }
         .repo-description {
           margin: 0.5rem 0;

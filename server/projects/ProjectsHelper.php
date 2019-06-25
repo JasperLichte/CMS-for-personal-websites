@@ -65,9 +65,24 @@ class ProjectsHelper
             $stars = (isset($repo['stargazers_count']) && !empty($repo['stargazers_count']) ? $repo['stargazers_count'] : 0);
             $watchers = (isset($repo['watchers_count']) && !empty($repo['watchers_count']) ? $repo['watchers_count'] : 0);
             $forks = (isset($repo['forks']) && !empty($repo['forks']) ? $repo['forks'] : 0);
+            $mainLanguage = (isset($repo['language']) && !empty($repo['language']) ? $repo['language'] : '');
+
+            //echo '<pre>';
+            //var_dump($repo);
+            //echo '</pre><hr>';
 
             $repoHtml = [];
-            $repoHtml[] = HtmlHelper::element('h3', ['class' => 'repo-name'], $name);
+            $repoHtml[] = HtmlHelper::element(
+                'h3',
+                ['class' => 'repo-name'],
+                $name . ($mainLanguage
+                    ? HtmlHelper::element(
+                        'span',
+                        ['class' => 'repo-main-language'],
+                       ' (' . $mainLanguage . ')'
+                    )
+                    : '')
+            );
             $repoHtml[] = HtmlHelper::element('p', ['class' => 'repo-description'], $description);
             $repoHtml[] = HtmlHelper::element('div', ['class' => 'repo-stats'], implode('', [
                 HtmlHelper::element('span', ['title' => 'Stars'], HtmlHelper::inlineImg(Config::MEDIA_ROOT_URL() . 'assets/star.svg') . $stars),
