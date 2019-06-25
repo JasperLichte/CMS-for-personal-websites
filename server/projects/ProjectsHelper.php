@@ -67,10 +67,6 @@ class ProjectsHelper
             $forks = (isset($repo['forks']) && !empty($repo['forks']) ? $repo['forks'] : 0);
             $mainLanguage = (isset($repo['language']) && !empty($repo['language']) ? $repo['language'] : '');
 
-            //echo '<pre>';
-            //var_dump($repo);
-            //echo '</pre><hr>';
-
             $repoHtml = [];
             $repoHtml[] = HtmlHelper::element(
                 'h3',

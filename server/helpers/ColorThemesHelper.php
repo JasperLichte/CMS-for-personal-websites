@@ -22,22 +22,32 @@ class ColorThemesHelper
             ['id', 'name']
         ) ?: [];
     }
+
     /**
      * @return array
      */
     public static function getDefaultThemeValues()
     {
-        $defaultThemeId = (int)Config::get('DEFAULT_COLOR_THEME');
-
-        $db = Connection::getInstance();
-        return QueryHelper::getTableFields(
-            $db,
+        $res =  QueryHelper::getTableFields(
+            Connection::getInstance(),
             'color_themes CT' .
             ' INNER JOIN color_themes_values CTV' .
             ' ON CT.id = CTV.theme_id',
             ['CTV.var_name', 'CTV.value'],
-            'CT.id = ' . $defaultThemeId . ''
+            'CT.id = ' . (int)Config::get('DEFAULT_COLOR_THEME') . ''
         )?:[];
+
+        $theme = [];
+        foreach ($res as $set) {
+            $theme[$set['var_name']] = $set['value'];
+        }
+
+        if (!isset($theme['content-accent-bg-color']) || empty($theme['content-accent-bg-color'])) {
+            $theme['content-accent-bg-color'] = (isset($theme['header-bg-color']) && !empty($theme['header-bg-color'])
+                ? $theme['header-bg-color'] : '');
+        }
+
+        return $theme;
     }
 
     /**
@@ -47,11 +57,11 @@ class ColorThemesHelper
     public static function getThemeInlineStyles($theme = [])
     {
         $strings = [];
-        foreach ($theme as $color) {
-            if (!isset($color['var_name']) || !isset($color['value']) || !$color['var_name'] || !$color['value']) {
+        foreach ($theme as $varName => $value) {
+            if (!isset($varName) || !isset($value) || !$varName || !$value) {
                 continue;
             }
-            $strings[] = '--' . $color['var_name'] . ': ' . $color['value'] . ';';
+            $strings[] = '--' . $varName . ': ' . $value . ';';
         }
         return implode('', $strings);
     }
