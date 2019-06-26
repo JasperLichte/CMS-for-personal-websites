@@ -51,10 +51,10 @@ class Home extends Component
                 ? HtmlHelper::element('h2', ['class' => 'section-header'], $section['header'])
                 : '');
             $content = (isset($section['content']) && !empty($section['content'])
-                ? $section['content']
+                ? HtmlHelper::element('div', ['class' => 'content-wrapper'], $section['content'])
                 : '');
 
-            if (!$header || !$content) {
+            if (!$header && !$content) {
                 continue;
             }
 
@@ -65,7 +65,11 @@ class Home extends Component
                     'id'                => 'content-section-' . $key,
                     'data-section-name' => $key,
                 ],
-                HtmlHelper::element('div', ['class' => 'border-transition-helper'], $header . $content)
+                HtmlHelper::element(
+                    'div',
+                    ['class' => 'border-transition-helper'],
+                    ($header . $content)
+                )
             );
         }
 

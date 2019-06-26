@@ -3,6 +3,8 @@
 namespace projects;
 
 use base\config\Config;
+use database\Connection;
+use database\QueryHelper;
 use templates\HtmlHelper;
 
 class ProjectsHelper
@@ -75,7 +77,7 @@ class ProjectsHelper
                     ? HtmlHelper::element(
                         'span',
                         ['class' => 'repo-main-language'],
-                       ' (' . $mainLanguage . ')'
+                        ' (' . $mainLanguage . ')'
                     )
                     : '')
             );
@@ -103,6 +105,53 @@ class ProjectsHelper
             );
         }
         return HtmlHelper::element('ul', ['id' => 'projects-github-repos-list'], implode('', $html));
+    }
+
+    /**
+     * @return array
+     */
+    private static function getLiveProjects()
+    {
+        return QueryHelper::getTableFields(
+            Connection::getInstance(),
+            'live_projects',
+            ['url', 'description'],
+            'project_index > -1',
+            'project_index ASC'
+        ) ?: [];
+    }
+
+    /**
+     * @return string
+     */
+    public static function buildLiveProjectsHtml()
+    {
+        $html = [];
+        foreach (self::getLiveProjects() as $project) {
+            $frameWrapper = HtmlHelper::element(
+                'div',
+                [
+                    'data-frame-url' => $project['url'],
+                    'class' => 'live-project-wrapper',
+                ],
+                HtmlHelper::element('span', ['class' => 'loading-spinner'])
+            );
+
+            $html[] = HtmlHelper::element(
+                'div',
+                ['class' => 'live-project'],
+                $frameWrapper
+                . HtmlHelper::element(
+                    'div',
+                    ['class' => 'info-box'],
+                    ($project['description']
+                        ? HtmlHelper::element('p', [], $project['description'])
+                        : '')
+                    . HtmlHelper::textLink($project['url'], ['target' => '_blank'], 'Full Version')
+                )
+            );
+        }
+        return implode('', $html);
     }
 
 }

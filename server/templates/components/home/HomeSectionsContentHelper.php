@@ -14,6 +14,7 @@ class HomeSectionsContentHelper
 
     const HELLO = 'hello';
     const GITHUB_REPOS = 'github-repos';
+    const LIVE_PROJECTS = 'live-projects';
 
     /**
      * @return array
@@ -51,6 +52,10 @@ class HomeSectionsContentHelper
             case self::GITHUB_REPOS:
                 $header = 'My Repos on Github';
                 $content = ProjectsHelper::buildGithubProjectsHtml();
+                break;
+            case self::LIVE_PROJECTS:
+                $header = 'Demos of my work';
+                $content = ProjectsHelper::buildLiveProjectsHtml();
                 break;
         }
         return ['header' => $header, 'content' => $content];

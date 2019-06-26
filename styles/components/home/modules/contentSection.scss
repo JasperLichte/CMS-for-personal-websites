@@ -19,19 +19,24 @@ section.content-section {
     margin-bottom: 1rem;
   }
 
+  & .content-wrapper {
+    overflow-y: auto;
+    height: auto;
+  }
+
   // BORDER ANIMATION ON HOVER
   &::before, &::after {
     content: "";
     position: absolute;
-    height: 2px;
-    width: calc(100% + 4px);
-    left: -2px;
+    height: 1px;
+    width: calc(100% + 2px);
+    left: -1px;
     background-color: var(--content-accent-bg-color);
     transform: scaleX(0);
     transition: transform 600ms ease-in;
   }
-  &::before {top: -2px; transform-origin: left}
-  &::after {bottom: -2px; transform-origin: right}
+  &::before {top: -1px; transform-origin: left}
+  &::after {bottom: -1px; transform-origin: right}
   &:hover::before, &:hover::after {transform: scaleX(1)}
 
   & > .border-transition-helper {
@@ -40,15 +45,15 @@ section.content-section {
     &::before, &::after {
       content: "";
       position: absolute;
-      height: calc(100% + 4px);
-      width: 2px;
-      top: -2px;
+      height: calc(100% + 2px);
+      width: 1px;
+      top: -1px;
       background-color: var(--content-accent-bg-color);
       transform: scaleY(0);
       transition: transform 600ms ease-in;
     }
-    &::before {left: -2px; transform-origin: bottom}
-    &::after {right: -2px; transform-origin: top}
+    &::before {left: -1px; transform-origin: bottom}
+    &::after {right: -1px; transform-origin: top}
     &:hover::before, &:hover::after {transform: scaleY(1)}
   }
   // ANIMATION END
