@@ -162,11 +162,15 @@ class Admin extends Component
             [
                 [
                     'val' => 1,
-                    'desc' => 'Ja',
+                    'desc' => 'Rain',
+                ],
+                [
+                    'val' => 2,
+                    'desc' => 'Wandering Circles',
                 ],
                 [
                     'val' => 0,
-                    'desc' => 'Nein',
+                    'desc' => 'None',
                 ],
             ],
             Config::get('BG_ANIMATION')

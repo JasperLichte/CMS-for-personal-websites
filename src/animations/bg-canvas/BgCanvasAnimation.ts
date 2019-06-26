@@ -19,7 +19,7 @@ export default class BgCanvasAnimation {
     this.lastRender = (new Date()).getTime();
     this.loop = this.loop.bind(this);
     this.setWidthAndHeight = this.setWidthAndHeight.bind(this);
-
+    this.handleResize();
     this.loop();
   }
 

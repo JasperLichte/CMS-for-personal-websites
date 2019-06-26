@@ -116,6 +116,15 @@ class ColorThemesHelper
                 $theme['name']
             );
         }
+        $html[] = HtmlHelper::element(
+            'button',
+            [
+                'class' => 'color-theme-button',
+                'id' => 'reset',
+                'data-theme-id' => 0,
+            ],
+            'Reset to default'
+        );
         return implode('', $html);
     }
 

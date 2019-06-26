@@ -4,7 +4,7 @@ export const listenForColorThemeEvents = () => {
   document.querySelectorAll('#content-section-color-themes .color-theme-button')
   .forEach(button => {
     const themeId: number = parseInt(button.getAttribute('data-theme-id'));
-    if (!themeId) return;
+    if (!themeId && themeId !== 0) return;
     button.addEventListener('click', async () => {
       const apiUrl = Config.get('API_ROOT_DIR');
       const res = await fetch(`${apiUrl}users/theme.php?themeId=${themeId}`);
