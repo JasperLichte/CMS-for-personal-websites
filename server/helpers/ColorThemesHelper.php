@@ -38,7 +38,7 @@ class ColorThemesHelper
      * @param $id
      * @return array
      */
-    private static function getThemeValuesById($id)
+    public static function getThemeValuesById($id)
     {
         $id = (int)$id;
         if (!$id) {

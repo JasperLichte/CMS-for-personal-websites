@@ -9,9 +9,12 @@ export const listenForColorThemeEvents = () => {
       const apiUrl = Config.get('API_ROOT_DIR');
       const res = await fetch(`${apiUrl}users/theme.php?themeId=${themeId}`);
       const resObj = await res.json();
-      if (resObj.success) {
-        // TODO: Dont reload, instead, get values from api, use them as custom properties
-        window.location.reload();
+      if (!resObj.success) return;
+      const {theme} = resObj.data;
+      const html = document.getElementsByTagName('html')[0];
+      html.style.cssText = '';
+      for (const varName in theme) {
+        html.style.cssText += `--${varName}: ${theme[varName]}`;
       }
     });
   });
