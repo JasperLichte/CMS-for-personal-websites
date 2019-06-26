@@ -5,6 +5,7 @@ namespace helpers;
 use base\config\Config;
 use database\Connection;
 use database\QueryHelper;
+use templates\HtmlHelper;
 
 require_once __DIR__ . './../base/base.php';
 
@@ -19,7 +20,9 @@ class ColorThemesHelper
         return QueryHelper::getTableFields(
             Connection::getInstance(),
             'color_themes',
-            ['id', 'name']
+            ['id', 'name'],
+            'theme_index >= 0',
+            'theme_index, name'
         ) ?: [];
     }
 
@@ -28,13 +31,26 @@ class ColorThemesHelper
      */
     public static function getDefaultThemeValues()
     {
+        return self::getThemeValuesById(Config::get('DEFAULT_COLOR_THEME'));
+    }
+
+    /**
+     * @param $id
+     * @return array
+     */
+    private static function getThemeValuesById($id)
+    {
+        $id = (int)$id;
+        if (!$id) {
+            return [];
+        }
         $res =  QueryHelper::getTableFields(
             Connection::getInstance(),
             'color_themes CT' .
             ' INNER JOIN color_themes_values CTV' .
             ' ON CT.id = CTV.theme_id',
             ['CTV.var_name', 'CTV.value'],
-            'CT.id = ' . (int)Config::get('DEFAULT_COLOR_THEME') . ''
+            'CT.id = ' . $id . ''
         )?:[];
 
         $theme = [];
@@ -51,6 +67,24 @@ class ColorThemesHelper
     }
 
     /**
+     * @return array
+     */
+    public static function getThemeValuesForIp()
+    {
+        $ip = RequestHelper::getRequestIP();
+        $themeId = (int)QueryHelper::getTableFieldElement(
+            Connection::getInstance(),
+            'color_themes_ip',
+            'colorThemeId',
+            'ip = "' . $ip . '"'
+        );
+        if ($themeId) {
+            return self::getThemeValuesById($themeId);
+        }
+        return self::getDefaultThemeValues();
+    }
+
+    /**
      * @param array $theme
      * @return string
      */
@@ -64,6 +98,25 @@ class ColorThemesHelper
             $strings[] = '--' . $varName . ': ' . $value . ';';
         }
         return implode('', $strings);
+    }
+
+    /**
+     *
+     */
+    public static function buildThemesSectionHtml()
+    {
+        $html = [];
+        foreach (self::getThemes() as $theme) {
+            $html[] = HtmlHelper::element(
+                'button',
+                [
+                    'class' => 'color-theme-button',
+                    'data-theme-id' => (int)$theme['id']
+                ],
+                $theme['name']
+            );
+        }
+        return implode('', $html);
     }
 
 }

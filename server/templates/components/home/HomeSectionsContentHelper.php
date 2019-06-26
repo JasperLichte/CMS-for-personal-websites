@@ -4,9 +4,11 @@ namespace templates\components;
 
 require_once __DIR__ . './../../../base/base.php';
 require_once __DIR__ . './../../../projects/ProjectsHelper.php';
+require_once __DIR__ . './../../../helpers/ColorThemesHelper.php';
 
 use database\Connection;
 use database\QueryHelper;
+use helpers\ColorThemesHelper;
 use projects\ProjectsHelper;
 
 class HomeSectionsContentHelper
@@ -15,6 +17,7 @@ class HomeSectionsContentHelper
     const HELLO = 'hello';
     const GITHUB_REPOS = 'github-repos';
     const LIVE_PROJECTS = 'live-projects';
+    const COLOR_THEMES = 'color-themes';
 
     /**
      * @return array
@@ -56,6 +59,9 @@ class HomeSectionsContentHelper
             case self::LIVE_PROJECTS:
                 $header = 'Demos of my work';
                 $content = ProjectsHelper::buildLiveProjectsHtml();
+                break;
+            case self::COLOR_THEMES:
+                $content = ColorThemesHelper::buildThemesSectionHtml();
                 break;
         }
         return ['header' => $header, 'content' => $content];

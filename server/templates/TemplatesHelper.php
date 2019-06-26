@@ -127,7 +127,7 @@ class TemplatesHelper
                 [
                     'lang'  => RequestHelper::getRequestLanguage(),
                     'style' => ColorThemesHelper::getThemeInlineStyles(
-                        ColorThemesHelper::getDefaultThemeValues()
+                        ColorThemesHelper::getThemeValuesForIp()
                     ),
                 ],
                 (

@@ -84,7 +84,32 @@ class QueryHelper
             $order,
             1
         );
-        return reset($res) ?: [];
+        if (is_array($res)) {
+            return reset($res) ?: [];
+        }
+        return $res;
+    }
+
+    /**
+     * @param mysqli $link
+     * @param $table
+     * @param string $field
+     * @param string $condition
+     * @param string $order
+     * @return array
+     */
+    public static  function getTableFieldElement(
+        mysqli $link,
+        $table,
+        $field,
+        $condition = '',
+        $order = ''
+    ) {
+        $res = self::getTableFieldsElement($link, $table, [$field], $condition, $order);
+        if (isset($res[$field]) && !empty($res[$field])) {
+            return $res[$field];
+        }
+        return [];
     }
 
     /**

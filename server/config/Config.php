@@ -174,6 +174,10 @@ class Config
                 $arr[$key]['value'] = (int)$entry['value'];
             }
         }
+        $arr['ABS_ROOT_DIR'] = ['value' => self::ABS_ROOT_DIR(), 'type' => 'string'];
+        $arr['MEDIA_ROOT_URL'] = ['value' => self::MEDIA_ROOT_URL(), 'type' => 'string'];
+        $arr['API_ROOT_DIR'] = ['value' => self::API_ROOT_DIR(), 'type' => 'string'];
+
         return $arr;
     }
 }
