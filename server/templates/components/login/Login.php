@@ -5,7 +5,7 @@ namespace templates\components\login;
 require_once __DIR__ . './../../../base/base.php';
 require_once __DIR__ . './../Component.php';
 require_once __DIR__ . './../../../api/helpers/ValueNames.php';
-require_once __DIR__ . './../../../helpers/ColorThemesHelper.php';
+require_once __DIR__ . './../../../color_themes/ColorThemesHelper.php';
 
 use base\config\Config;
 use templates\components\Component;

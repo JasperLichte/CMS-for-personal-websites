@@ -8,7 +8,7 @@ use helpers\ColorThemesHelper;
 use templates\components\Component;
 
 require_once __DIR__ . './../base/base.php';
-require_once __DIR__ . './../helpers/ColorThemesHelper.php';
+require_once __DIR__ . './../color_themes/ColorThemesHelper.php';
 
 class TemplatesHelper
 {

@@ -6,7 +6,7 @@ use helpers\ColorThemesHelper;
 use helpers\RequestHelper;
 
 require_once __DIR__ . './../../base/base.php';
-require_once __DIR__ . './../../helpers/ColorThemesHelper.php';
+require_once __DIR__ . './../../color_themes/ColorThemesHelper.php';
 
 $themeId = (int)(isset($_GET['themeId']) ? $_GET['themeId'] : 0);
 

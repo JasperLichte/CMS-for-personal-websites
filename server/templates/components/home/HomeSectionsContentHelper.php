@@ -4,7 +4,7 @@ namespace templates\components;
 
 require_once __DIR__ . './../../../base/base.php';
 require_once __DIR__ . './../../../projects/ProjectsHelper.php';
-require_once __DIR__ . './../../../helpers/ColorThemesHelper.php';
+require_once __DIR__ . './../../../color_themes/ColorThemesHelper.php';
 
 use database\Connection;
 use database\QueryHelper;

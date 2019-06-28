@@ -12,17 +12,31 @@ require_once __DIR__ . './../base/base.php';
 class ColorThemesHelper
 {
 
+    const BODY_BG = 'body-bg';
+    const BG_CANVAS_FILTER = 'bg-canvas-filter';
+    const BG_CANVAS_OPACITY = 'bg-canvas-opacity';
+    const CONTENT_BG = 'content-bg-color';
+    const CONTENT_FONT = 'content-font-color';
+    const CONTENT_ACCENT_BG = 'content-accent-bg-color';
+    const CONTENT_ACCENT_FONT = 'content-accent-font-color';
+    const HEADER_BG = 'header-bg-color';
+    const HEADER_FONT = 'header-font-color';
+    const FOOTER_BG = 'footer-bg-color';
+    const FOOTER_FONT = 'footer-font-color';
+
     /**
+     * @param int $limit
      * @return array
      */
-    public static function getThemes()
+    public static function getThemes($limit = null)
     {
         return QueryHelper::getTableFields(
             Connection::getInstance(),
             'color_themes',
             ['id', 'name'],
             'theme_index >= 0',
-            'theme_index, name'
+            'theme_index, name',
+            $limit
         ) ?: [];
     }
 
@@ -58,9 +72,9 @@ class ColorThemesHelper
             $theme[$set['var_name']] = $set['value'];
         }
 
-        if (!isset($theme['content-accent-bg-color']) || empty($theme['content-accent-bg-color'])) {
-            $theme['content-accent-bg-color'] = (isset($theme['header-bg-color']) && !empty($theme['header-bg-color'])
-                ? $theme['header-bg-color'] : '');
+        if (!isset($theme[self::CONTENT_ACCENT_BG]) || empty($theme[self::CONTENT_ACCENT_BG])) {
+            $theme[self::CONTENT_ACCENT_BG] = (isset($theme[self::HEADER_BG]) && !empty($theme[self::HEADER_BG])
+                ? $theme[self::HEADER_BG] : '');
         }
 
         return $theme;
@@ -106,7 +120,10 @@ class ColorThemesHelper
     public static function buildThemesSectionHtml()
     {
         $html = [];
-        foreach (self::getThemes() as $theme) {
+        foreach (self::getThemes(10) as $theme) {
+            if ((int)$theme['id'] == Config::get('DEFAULT_COLOR_THEME')) {
+                continue;
+            }
             $html[] = HtmlHelper::element(
                 'button',
                 [

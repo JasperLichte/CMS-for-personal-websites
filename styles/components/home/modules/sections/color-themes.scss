@@ -1,0 +1,12 @@
+#content-section-color-themes {
+  .content-wrapper {
+    margin: -.125rem;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+
+    button.color-theme-button {
+      margin: .125rem;
+    }
+  }
+}
