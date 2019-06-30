@@ -54,6 +54,10 @@ class Home extends Component
                 ? HtmlHelper::element('div', ['class' => 'content-wrapper'], $section['content'])
                 : '');
 
+            if (!($content || $header)) {
+                continue;
+            }
+
             $sectionsHtml[] = HtmlHelper::element(
                 'section',
                 [
