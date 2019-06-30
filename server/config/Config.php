@@ -2,11 +2,13 @@
 
 namespace base\config;
 
+use bg_animations\BgAnimationsHelper;
 use database\Connection;
 use database\QueryHelper;
 use helpers\RequestHelper;
 
 require_once __DIR__ . './../base/base.php';
+require_once __DIR__ . './../bg_animations/BgAnimationsHelper.php';
 
 class Config
 {
@@ -177,6 +179,7 @@ class Config
         $arr['ABS_ROOT_DIR'] = ['value' => self::ABS_ROOT_DIR(), 'type' => 'string'];
         $arr['MEDIA_ROOT_URL'] = ['value' => self::MEDIA_ROOT_URL(), 'type' => 'string'];
         $arr['API_ROOT_DIR'] = ['value' => self::API_ROOT_DIR(), 'type' => 'string'];
+        $arr['BG_ANIMATION'] = ['value' => BgAnimationsHelper::getAnimationForIp(), 'type' => 'int'];
 
         return $arr;
     }

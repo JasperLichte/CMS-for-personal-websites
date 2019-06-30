@@ -2,7 +2,7 @@
 
 use database\Connection;
 use database\QueryHelper;
-use helpers\ColorThemesHelper;
+use color_themes\ColorThemesHelper;
 use helpers\RequestHelper;
 
 require_once __DIR__ . './../../base/base.php';
@@ -25,7 +25,7 @@ if ($themeId == 0) {
     );
 
     if (!$success) {
-        $res = ['error' => 'No themeId given'];
+        $res = ['error' => 500];
     } else {
         $res = [
             'success' => true,
@@ -44,7 +44,7 @@ else {
     );
 
     if (!$success) {
-        $res = ['error' => 'No themeId given'];
+        $res = ['error' => 500];
     } else {
         $res = [
             'success' => true,

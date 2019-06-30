@@ -24,12 +24,9 @@ footer {
 
     & #links {
       &  a {
-        cursor: pointer;
-        background-color: rgba(200, 200, 200, 0.5);
         box-shadow: inset $defaultBoxShadow;
         font-size: 0.8rem;
         text-decoration: none;
-        padding: 0.5rem 0.75rem;
         margin: 0.125rem;
       }
     }

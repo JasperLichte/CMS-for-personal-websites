@@ -1,10 +1,9 @@
 import Config from "../config/Config.js";
-import Rain from "../animations/bg-canvas/rain/Rain.js";
+import Rain from "./bg-canvas/rain/Rain.js";
 import WanderingCircles from "./bg-canvas/wanderingCircles/WanderingCircles.js";
 
-export default () => {
-
-  if (Config.get('BG_ANIMATION')) {
+export default (animationId:number = Config.get('BG_ANIMATION')) => {
+  if (animationId) {
     const canvas = <HTMLCanvasElement>document.getElementById('bg-canvas')
     if (!canvas) return;
 
@@ -15,5 +14,4 @@ export default () => {
         return new WanderingCircles(canvas);
     }
   }
-
 }

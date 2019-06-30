@@ -10,7 +10,7 @@ require_once __DIR__ . './../../../color_themes/ColorThemesHelper.php';
 
 use api\helpers\ValueNames;
 use base\config\Config;
-use helpers\ColorThemesHelper;
+use color_themes\ColorThemesHelper;
 use helpers\RequestHelper;
 use templates\components\Component;
 use templates\HtmlHelper;
@@ -173,7 +173,7 @@ class Admin extends Component
                     'desc' => 'None',
                 ],
             ],
-            Config::get('BG_ANIMATION')
+            Config::get('DEFAULT_BG_ANIMATION')
         );
     }
 

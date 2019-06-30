@@ -11,12 +11,18 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `bg_animations` (
   `id` int(11) NOT NULL,
-  `name` varchar(127) NOT NULL
+  `name` varchar(127) NOT NULL,
+  `animation_index` int(11) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
-INSERT INTO `bg_animations` (`id`, `name`) VALUES
-(1, 'rain'),
-(2, 'wandering-circles');
+INSERT INTO `bg_animations` (`id`, `name`, `animation_index`) VALUES
+(1, 'Rain', 1),
+(2, 'Wandering Circles', 0);
+
+CREATE TABLE `bg_animations_ip` (
+  `ip` varchar(31) NOT NULL,
+  `bgAnimationId` int(11) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 CREATE TABLE `color_themes` (
   `id` int(11) NOT NULL,
@@ -100,7 +106,8 @@ INSERT INTO `home_sections` (`section_name`, `section_index`) VALUES
 ('hello', -1),
 ('github-repos', 1),
 ('live-projects', -1),
-('color-themes', 0);
+('color-themes', 0),
+('bg-animations', 0);
 
 CREATE TABLE `live_projects` (
   `id` int(11) NOT NULL,
@@ -137,19 +144,20 @@ INSERT INTO `settings` (`name`, `value`, `type`, `send_to_client`) VALUES
 ('CREATOR_EMAIL', 'jasper@lichte.info', 'string', '0'),
 ('CREATOR_GITHUB_URL', 'https://github.com/JasperLichte', 'string', '0'),
 ('APP_NAME', 'Jasper Lichte', 'string', '0'),
-('BG_ANIMATION', '2', 'int', '1'),
-('COLOR_ANIMATION', '0', 'bool', '1'),
-('COLOR_ANIMATION_DELAY', '10000', 'int', '1'),
+('DEFAULT_BG_ANIMATION', '2', 'int', '0'),
 ('PRODUCTION', '0', 'bool', '1'),
 ('VERSION', '0.1.0', 'string', '0'),
 ('DEFAULT_LANGUAGE', 'en', 'string', '0'),
 ('REPO_URL', 'https://github.com/JasperLichte/CMS-for-personal-websites', 'string', '0'),
 ('FAVICON_URL', 'https://www.media.lichte.info/assets/favicon.ico', 'string', '0'),
-('DEFAULT_COLOR_THEME', '4', 'int', '0');
+('DEFAULT_COLOR_THEME', '5', 'int', '0');
 
 
 ALTER TABLE `bg_animations`
   ADD PRIMARY KEY (`id`);
+
+ALTER TABLE `bg_animations_ip`
+  ADD PRIMARY KEY (`ip`);
 
 ALTER TABLE `color_themes`
   ADD PRIMARY KEY (`id`);

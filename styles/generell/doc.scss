@@ -15,10 +15,11 @@ a, a:active, a:visited, a:hover, a:link, a:any-link {
 }
 
 button, input[type="submit"], a.button, a.btn {
+  border-radius: 6px;
   background: rgba(10, 10, 10, .25);
-  padding: .25rem .75rem;
+  padding: 0.5rem 0.75rem;
   color: var(--content-font-color);
-  border: 1px solid var(--content-accent-bg-color);
+  border: 1px solid var(--content-accent-font-color);
   cursor: pointer;
   outline: 0 none;
   box-shadow: $defaultBoxShadow, inset $defaultBoxShadow;

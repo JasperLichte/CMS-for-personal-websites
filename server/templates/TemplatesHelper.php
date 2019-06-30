@@ -4,7 +4,7 @@ namespace templates;
 
 use base\config\Config;
 use helpers\RequestHelper;
-use helpers\ColorThemesHelper;
+use color_themes\ColorThemesHelper;
 use templates\components\Component;
 
 require_once __DIR__ . './../base/base.php';

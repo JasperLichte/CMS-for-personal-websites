@@ -5,10 +5,12 @@ namespace templates\components;
 require_once __DIR__ . './../../../base/base.php';
 require_once __DIR__ . './../../../projects/ProjectsHelper.php';
 require_once __DIR__ . './../../../color_themes/ColorThemesHelper.php';
+require_once __DIR__ . './../../../bg_animations/BgAnimationsHelper.php';
 
+use bg_animations\BgAnimationsHelper;
 use database\Connection;
 use database\QueryHelper;
-use helpers\ColorThemesHelper;
+use color_themes\ColorThemesHelper;
 use projects\ProjectsHelper;
 
 class HomeSectionsContentHelper
@@ -18,6 +20,7 @@ class HomeSectionsContentHelper
     const GITHUB_REPOS = 'github-repos';
     const LIVE_PROJECTS = 'live-projects';
     const COLOR_THEMES = 'color-themes';
+    const BG_ANIMATIONS = 'bg-animations';
 
     /**
      * @return array
@@ -62,6 +65,9 @@ class HomeSectionsContentHelper
                 break;
             case self::COLOR_THEMES:
                 $content = ColorThemesHelper::buildThemesSectionHtml();
+                break;
+            case self::BG_ANIMATIONS:
+                $content = BgAnimationsHelper::buildAnimationsSectionHtml();
                 break;
         }
         return ['header' => $header, 'content' => $content];

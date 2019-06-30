@@ -1,10 +1,11 @@
 <?php
 
-namespace helpers;
+namespace color_themes;
 
 use base\config\Config;
 use database\Connection;
 use database\QueryHelper;
+use helpers\RequestHelper;
 use templates\HtmlHelper;
 
 require_once __DIR__ . './../base/base.php';
@@ -115,15 +116,12 @@ class ColorThemesHelper
     }
 
     /**
-     *
+     * @return string
      */
     public static function buildThemesSectionHtml()
     {
         $html = [];
         foreach (self::getThemes(10) as $theme) {
-            if ((int)$theme['id'] == Config::get('DEFAULT_COLOR_THEME')) {
-                continue;
-            }
             $html[] = HtmlHelper::element(
                 'button',
                 [

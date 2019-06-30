@@ -17,7 +17,7 @@ if ($colorThemeId) {
 }
 \database\QueryHelper::query(
     \database\Connection::getInstance(),
-    'UPDATE settings SET value = ' . $bgAnimation . ' WHERE name = "BG_ANIMATION"'
+    'UPDATE settings SET value = ' . $bgAnimation . ' WHERE name = "DEFAULT_BG_ANIMATION"'
 );
 
 header('Location: ' . \helpers\RequestHelper::getPreviousUrl());

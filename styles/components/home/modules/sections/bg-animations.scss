@@ -1,0 +1,12 @@
+#content-section-bg-animations {
+  .content-wrapper {
+    margin: -.125rem;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+
+    button.bg-animation-button {
+      margin: .125rem;
+    }
+  }
+}

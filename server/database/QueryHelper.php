@@ -15,7 +15,6 @@ class QueryHelper
     public static function query(mysqli $link, $query)
     {
         $res = mysqli_query($link, $query);
-
         if (is_bool($res)) {
             return $res;
         }
