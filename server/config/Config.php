@@ -9,6 +9,7 @@ use helpers\RequestHelper;
 
 require_once __DIR__ . './../base/base.php';
 require_once __DIR__ . './../bg_animations/BgAnimationsHelper.php';
+require_once __DIR__ . './../config/FileVersions.php';
 
 class Config
 {
@@ -60,7 +61,7 @@ class Config
     {
         return (self::PRODUCTION()
             ? self::SCRIPTS_ROOT_DIR() . 'bundle.js'
-            : self::ABS_ROOT_DIR() . 'build/app.js');
+            : self::ABS_ROOT_DIR() . 'build/app.js') . '?v=' . FileVersions::JS_VERSION;
     }
 
     /**

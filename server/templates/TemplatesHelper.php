@@ -3,12 +3,14 @@
 namespace templates;
 
 use base\config\Config;
+use base\config\FileVersions;
 use helpers\RequestHelper;
 use color_themes\ColorThemesHelper;
 use templates\components\Component;
 
 require_once __DIR__ . './../base/base.php';
 require_once __DIR__ . './../color_themes/ColorThemesHelper.php';
+require_once __DIR__ . './../config/FileVersions.php';
 
 class TemplatesHelper
 {
@@ -37,7 +39,7 @@ class TemplatesHelper
             if (!is_string($file)) {
                 continue;
             }
-            $file = Config::STYLES_ROOT_DIR() . $file;
+            $file = Config::STYLES_ROOT_DIR() . $file . '?v=' . FileVersions::CSS_VERSION;
             $html .= "<link rel=\"stylesheet\" href=\"{$file}\">\n";
         }
         return $html;
