@@ -1,7 +1,7 @@
 {
   "name": "cms-for-personal-websites",
   "version": "1.0.0",
-  "description": "A simple Jump 'n Run game written in ECMAScript2018.",
+  "description": "Content Management System for YOUR personal website and/or portfolio!",
   "main": "build/app.js",
   "scripts": {
     "watch-ts": "tsc -w",
@@ -13,7 +13,10 @@
     "type": "git",
     "url": "git+https://github.com/JasperLichte/CMS-for-personal-websites.git"
   },
-  "keywords": ["cms", "portfolio"],
+  "keywords": [
+    "cms",
+    "portfolio"
+  ],
   "author": "",
   "license": "ISC",
   "bugs": {
@@ -26,7 +29,7 @@
     "sass": "^1.17.0",
     "typescript": "^3.3.3",
     "webpack": "^4.28.4",
-    "webpack-cli": "^3.2.3"
+    "webpack-cli": "^3.3.5"
   },
   "dependencies": {
     "fs-extra": "^8.0.1"

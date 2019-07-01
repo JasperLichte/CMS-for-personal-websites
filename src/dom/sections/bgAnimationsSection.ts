@@ -1,5 +1,4 @@
 import Config from "../../config/Config.js";
-import startAnimation from "../../animations/startAnimation.js";
 
 
 export const changeBgAnimation = async (animationId: number) => {

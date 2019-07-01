@@ -1,4 +1,5 @@
 node_modules
+npm-debug.log
 build
 assets/scripts/bundle.js
 assets/styles/bundle.css
