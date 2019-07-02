@@ -173,20 +173,7 @@ class Admin extends Component
         return HtmlHelper::selectInput(
             ValueNames::BG_ANIMATION_BOOL,
             [],
-            [
-                [
-                    'val' => 1,
-                    'desc' => 'Rain',
-                ],
-                [
-                    'val' => 2,
-                    'desc' => 'Wandering Circles',
-                ],
-                [
-                    'val' => 0,
-                    'desc' => 'None',
-                ],
-            ],
+            $selectOptions,
             Config::get('DEFAULT_BG_ANIMATION')
         );
     }
