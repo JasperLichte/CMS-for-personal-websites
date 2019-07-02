@@ -1,12 +1,12 @@
 main {
   flex-grow: 1;
   padding: 1rem;
-  display: flex;
-  justify-content: center;
 
   & > #main-wrapper {
     flex-grow: 1;
     width: 100%;
-    max-width: $mainElementsMaxWidth;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
   }
 }

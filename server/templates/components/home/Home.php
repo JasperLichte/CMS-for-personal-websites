@@ -45,8 +45,11 @@ class Home extends Component
      */
     private static function buildMain()
     {
-        $sectionsHtml = [];
-        foreach (HomeSectionsContentHelper::getSections() as $key => $section) {
+        $sections = HomeSectionsContentHelper::getSections();
+        $sectionsInFirstColumn = ceil(count($sections) / 2);
+        $column1Html = $column2Html = [];
+        $i = 0;
+        foreach ($sections as $key => $section) {
             $header = (isset($section['header']) && !empty($section['header'])
                 ? HtmlHelper::element('h2', ['class' => 'section-header'], $section['header'])
                 : '');
@@ -58,7 +61,7 @@ class Home extends Component
                 continue;
             }
 
-            $sectionsHtml[] = HtmlHelper::element(
+            $html = HtmlHelper::element(
                 'section',
                 [
                     'class'             => 'content-section',
@@ -71,7 +74,23 @@ class Home extends Component
                     ($header . $content)
                 )
             );
+
+            if (++$i <= $sectionsInFirstColumn) {
+                $column1Html[] = $html;
+            } else {
+                $column2Html[] = $html;
+            }
         }
+        $column1Html = HtmlHelper::element(
+            'div',
+            ['class' => 'column', 'id' => 'column-1',],
+            implode('', $column1Html)
+        );
+        $column2Html = HtmlHelper::element(
+            'div',
+            ['class' => 'column', 'id' => 'column-2',],
+            implode('', $column2Html)
+        );
 
         return HtmlHelper::element(
             'main',
@@ -79,7 +98,7 @@ class Home extends Component
             HtmlHelper::element(
                 'div',
                 ['id' => 'main-wrapper'],
-                implode('', $sectionsHtml)
+                ($column1Html . $column2Html)
             )
         );
     }

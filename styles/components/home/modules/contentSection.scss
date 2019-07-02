@@ -3,12 +3,8 @@ section.content-section {
   transition: $bgColorTransition, $fontColorTransition;
   color: var(--content-font-color);
   box-shadow: $defaultBoxShadow;
-  margin-bottom: 0.5rem;
+  margin: .8rem;
   position: relative;
-
-  &:last-of-type {
-    margin-bottom: 0;
-  }
 
   & .section-header {
     text-align: right;
