@@ -132,7 +132,7 @@ class Config
         switch ($type) {
             case 'bool':
             case 'boolean':
-            return (bool)$value;
+                return (bool)$value;
             case 'int':
                 return (int)$value;
             default:

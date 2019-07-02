@@ -7,9 +7,11 @@ require_once __DIR__ . './../../HtmlHelper.php';
 require_once __DIR__ . './../Component.php';
 require_once __DIR__ . './../../../api/helpers/ValueNames.php';
 require_once __DIR__ . './../../../color_themes/ColorThemesHelper.php';
+require_once __DIR__ . './../../../bg_animations/BgAnimationsHelper.php';
 
 use api\helpers\ValueNames;
 use base\config\Config;
+use bg_animations\BgAnimationsHelper;
 use color_themes\ColorThemesHelper;
 use helpers\RequestHelper;
 use templates\components\Component;
@@ -156,6 +158,18 @@ class Admin extends Component
      */
     private static function buildBgAnimationInput()
     {
+        $selectOptions = [];
+        foreach (BgAnimationsHelper::getAnimations() as $animation) {
+            $selectOptions[] = [
+                'val' => (int)$animation['id'],
+                'desc' => $animation['name'],
+            ];
+        }
+        $selectOptions[] = [
+            'val' => 0,
+            'desc' => 'None',
+        ];
+
         return HtmlHelper::selectInput(
             ValueNames::BG_ANIMATION_BOOL,
             [],
