@@ -8,6 +8,8 @@ use helpers\RequestHelper;
 require_once __DIR__ . './../../base/base.php';
 require_once __DIR__ . './../../color_themes/ColorThemesHelper.php';
 
+RequestHelper::saveRequest();
+
 $themeId = (int)(isset($_GET['themeId']) ? $_GET['themeId'] : 0);
 
 if (!$themeId && $themeId != 0) {

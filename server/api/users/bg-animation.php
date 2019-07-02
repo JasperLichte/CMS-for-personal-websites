@@ -7,6 +7,8 @@ use helpers\RequestHelper;
 require_once __DIR__ . './../../base/base.php';
 require_once __DIR__ . './../../color_themes/ColorThemesHelper.php';
 
+RequestHelper::saveRequest();
+
 $animationId = (int)(isset($_GET['animationId']) ? $_GET['animationId'] : 0);
 
 if (!$animationId && $animationId != 0) {

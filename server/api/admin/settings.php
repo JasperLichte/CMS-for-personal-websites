@@ -1,10 +1,13 @@
 <?php
 
 use api\helpers\ValueNames;
+use helpers\RequestHelper;
 
 
 require_once __DIR__ . './../../base/base.php';
 require_once __DIR__ . './../helpers/ValueNames.php';
+
+RequestHelper::saveRequest();
 
 $colorThemeId = (isset($_POST[ValueNames::COLOR_THEME_ID]) ? (int)$_POST[ValueNames::COLOR_THEME_ID] : 0);
 $bgAnimation = (isset($_POST[ValueNames::BG_ANIMATION_BOOL]) ? (int)$_POST[ValueNames::BG_ANIMATION_BOOL] : 0);
@@ -20,5 +23,5 @@ if ($colorThemeId) {
     'UPDATE settings SET value = ' . $bgAnimation . ' WHERE name = "DEFAULT_BG_ANIMATION"'
 );
 
-header('Location: ' . \helpers\RequestHelper::getPreviousUrl());
+header('Location: ' . RequestHelper::getPreviousUrl());
 exit();

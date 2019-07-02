@@ -66,15 +66,17 @@ class RequestHelper
      */
     public static function saveRequest()
     {
-        if (!self::isLocalRequest()) {
+        if (Config::get('SAVE_REQUESTS') && !self::isLocalRequest()) {
+            $db = Connection::getInstance();
             QueryHelper::insertTablePairs(
-                Connection::getInstance(),
+                $db,
                 'requests',
                 [
                     'ip' => '"' . self::getRequestIP() . '"',
                     'path' => '"' . self::getRequestPath() . '"',
                     'time' => 'NOW()',
-                    'language' => '"' . self::getRequestLanguage() . '"'
+                    'language' => '"' . self::getRequestLanguage() . '"',
+                    'referer' => '"' . $db->real_escape_string(self::getPreviousUrl()) . '"',
                 ]
             );
         }
@@ -85,7 +87,7 @@ class RequestHelper
      */
     public static function getPreviousUrl()
     {
-        return $_SERVER['HTTP_REFERER'];
+        return (isset($_SERVER['HTTP_REFERER']) ? $_SERVER['HTTP_REFERER'] : '');
     }
 
     /**

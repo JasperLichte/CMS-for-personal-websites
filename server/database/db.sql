@@ -104,10 +104,10 @@ CREATE TABLE `home_sections` (
 
 INSERT INTO `home_sections` (`section_name`, `section_index`) VALUES
 ('hello', -1),
-('github-repos', 1),
+('github-repos', 2),
 ('live-projects', -1),
 ('color-themes', 0),
-('bg-animations', 0);
+('bg-animations', 1);
 
 CREATE TABLE `live_projects` (
   `id` int(11) NOT NULL,
@@ -129,7 +129,8 @@ CREATE TABLE `requests` (
   `ip` varchar(27) NOT NULL,
   `path` varchar(255) NOT NULL,
   `time` datetime NOT NULL,
-  `language` varchar(5) NOT NULL
+  `language` varchar(5) NOT NULL,
+  `referer` varchar(127) DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 CREATE TABLE `settings` (
@@ -145,6 +146,7 @@ INSERT INTO `settings` (`name`, `value`, `type`, `send_to_client`) VALUES
 ('CREATOR_GITHUB_URL', 'https://github.com/JasperLichte', 'string', '0'),
 ('APP_NAME', 'Jasper Lichte', 'string', '0'),
 ('DEFAULT_BG_ANIMATION', '2', 'int', '0'),
+('SAVE_REQUESTS', '1', 'bool', '0'),
 ('PRODUCTION', '0', 'bool', '1'),
 ('VERSION', '0.1.0', 'string', '0'),
 ('DEFAULT_LANGUAGE', 'en', 'string', '0'),
