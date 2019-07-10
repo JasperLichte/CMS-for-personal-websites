@@ -1,3 +1,7 @@
+
+# CMS for personal websites
+> Content Management System for YOUR personal website and/or portfolio!
+
 - [CMS for personal websites](#CMS-for-personal-websites)
   - [Demo:](#Demo)
   - [Installation:](#Installation)
@@ -6,9 +10,6 @@
   - [Development:](#Development)
     - [Contributing](#Contributing)
     - [Deploying](#Deploying)
-
-# CMS for personal websites
-> Content Management System for YOUR personal website and/or portfolio!
 
 ## Demo:
 [My portfolio](https://jasper.lichte.info)
