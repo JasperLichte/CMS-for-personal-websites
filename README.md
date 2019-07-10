@@ -3,25 +3,25 @@
 > Content Management System for YOUR personal website and/or portfolio!
 
 - [CMS for personal websites](#CMS-for-personal-websites)
-  - [Demo:](#Demo)
-  - [Installation:](#Installation)
-  - [Adding gitignored files:](#Adding-gitignored-files)
-  - [Setting up the database:](#Setting-up-the-database)
-  - [Development:](#Development)
+  - [Demo](#Demo)
+  - [Installation](#Installation)
+    - [Adding gitignored files](#Adding-gitignored-files)
+    - [Setting up the database](#Setting-up-the-database)
+  - [Development](#Development)
     - [Contributing](#Contributing)
     - [Deploying](#Deploying)
 
-## Demo:
+## Demo
 [My portfolio](https://jasper.lichte.info)
 
-## Installation:
+## Installation
 After running `npm i`, fire up `npm run build` to start the compilation.
 
-## Adding gitignored files:
+### Adding gitignored files
 You will need to create following PHP classes to get the app running:
 * `server/config/Credentials.php`
 
-## Setting up the database:
+### Setting up the database
 There is a SQL schema for the database to be found at `server/database/db.sql`. Run those SQL commands on your db server.
 Furthermore, you will need to specify the credentials to your database as constants in `server/config/Credentials.php`:
 * `DB_HOST`,
@@ -29,7 +29,7 @@ Furthermore, you will need to specify the credentials to your database as consta
 * `DB_PASSWORD`,
 * `DB_NAME`
 
-## Development:
+## Development
 * Run `npm run watch-ts` to listen for changes in the **TypeScript** code
 * Run `npm run watch-sass` to listen for changes in the **Sass** code
 
