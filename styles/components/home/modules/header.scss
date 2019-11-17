@@ -11,4 +11,39 @@ header {
     width: 100%;
     max-width: $mainElementsMaxWidth;
   }
+
+  nav#side-menu {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: -500px;
+    width: 100vw;
+    max-width: 500px;
+    z-index: 999;
+    background: var(--body-bg);
+    box-shadow: $defaultBoxShadow;
+    transition: left .4s ease;
+
+    &.visible {
+      left: 0;
+    }
+  }
+
+  button#side-menu-toggle {
+    border: none;
+    background: transparent;
+    box-shadow: none;
+    padding: 0;
+    & > span {
+      width: 50px;
+      height: 2px;
+      background: var(--content-font-color);
+      margin-bottom: 4px;
+
+      &:last-of-type {
+        margin-bottom: 0px;
+      }
+    }
+  }
+
 }

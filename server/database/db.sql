@@ -33,9 +33,9 @@ CREATE TABLE `color_themes` (
 INSERT INTO `color_themes` (`id`, `name`, `theme_index`) VALUES
 (1, 'Funky', 2),
 (2, 'Classic', 1),
-(3, 'Dark green', 3),
-(4, 'Vibrant', 0),
-(5, 'Neon', 4);
+(3, 'Dark green', -1),
+(4, 'Vibrant', 3),
+(5, 'Neon', 0);
 
 CREATE TABLE `color_themes_ip` (
   `ip` varchar(31) NOT NULL,
@@ -54,7 +54,7 @@ INSERT INTO `color_themes_values` (`theme_id`, `var_name`, `value`) VALUES
 (3, 'header-font-color', '#eee'),
 (3, 'content-bg-color', 'rgba(20, 20, 20, 0.85)'),
 (3, 'content-font-color', 'rgb(40, 125, 43)'),
-(3, 'content-accent-font-color', 'rgb(100, 100, 100)'),
+(3, 'content-accent-font-color', 'firebrick'),
 (3, 'footer-bg-color', 'rgba(40, 125, 43, 0.85)'),
 (3, 'footer-font-color', '#eee'),
 (3, 'bg-canvas-opacity', '1'),
@@ -85,17 +85,18 @@ INSERT INTO `color_themes_values` (`theme_id`, `var_name`, `value`) VALUES
 (4, 'content-bg-color', 'rgba(200, 200, 200, 0.35)'),
 (4, 'content-accent-bg-color', 'goldenrod'),
 (4, 'content-font-color', '#eee'),
-(4, 'content-accent-font-color', '#999'),
+(4, 'content-accent-font-color', 'gold'),
 (4, 'bg-canvas-filter', 'grayscale(100%) brightness(0%)'),
 (5, 'bg-canvas-filter', 'blur(80px) saturate(10)'),
 (5, 'body-bg', '#222'),
 (5, 'content-bg-color', 'rgba(10, 10, 10, .45)'),
-(5, 'content-accent-bg-color', 'hotpink'),
-(5, 'content-font-color', '#eee'),
+(5, 'content-accent-bg-color', 'rgba(255,105,180,.5)'),
+(5, 'content-font-color', 'rgba(255, 255, 255, .7)'),
 (5, 'header-bg-color', 'rgba(40,40,40,.9)'),
-(5, 'content-accent-font-color', 'rgba(255,105,180,.5)'),
+(5, 'content-accent-font-color', 'hotpink'),
 (5, 'footer-bg-color', 'rgba(40,40,40,.9)'),
-(5, 'bg-canvas-opacity', '.6');
+(5, 'bg-canvas-opacity', '.6'),
+(3, 'content-accent-bg-color', 'rgba(150, 150, 150, .4)');
 
 CREATE TABLE `home_sections` (
   `section_name` varchar(127) NOT NULL,
@@ -104,10 +105,11 @@ CREATE TABLE `home_sections` (
 
 INSERT INTO `home_sections` (`section_name`, `section_index`) VALUES
 ('hello', -1),
-('github-repos', 2),
+('github-repos', 3),
 ('live-projects', -1),
-('color-themes', 0),
-('bg-animations', 1);
+('color-themes', 1),
+('bg-animations', 2),
+('about-me', 0);
 
 CREATE TABLE `live_projects` (
   `id` int(11) NOT NULL,

@@ -32,10 +32,37 @@ class Home extends Component
         return HtmlHelper::element(
             'header',
             [],
-            HtmlHelper::element(
-                'div',
+            HtmlHelper::div(
                 ['id' => 'header-wrapper'],
-                'header'
+                self::buildSideMenuToggle() . self::buildSideMenu()
+            )
+        );
+    }
+
+    /**
+     * @return string
+     */
+    private static function buildSideMenuToggle()
+    {
+        return HtmlHelper::button(
+            ['id' => 'side-menu-toggle',],
+            HtmlHelper::span() . HtmlHelper::span() . HtmlHelper::span()
+        );
+    }
+
+    /**
+     * @return string
+     */
+    private static function buildSideMenu()
+    {
+        return HtmlHelper::element(
+            'nav',
+            [
+                'id' => 'side-menu',
+            ],
+            HtmlHelper::button(
+                ['id' => 'side-menu-close'],
+                'close'
             )
         );
     }

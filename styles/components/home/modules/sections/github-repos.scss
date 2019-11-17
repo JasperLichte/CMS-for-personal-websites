@@ -1,7 +1,7 @@
 #content-section-github-repos {
   & #projects-github-repos-list {
     & .repo {
-      border: 1px solid var(--content-accent-font-color);
+      border: 1px solid var(--content-accent-bg-color);
       transition: $borderColorTransition;
       list-style-type: none;
       margin-bottom: 0.4rem;

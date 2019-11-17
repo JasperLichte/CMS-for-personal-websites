@@ -104,12 +104,14 @@ class HtmlHelper
     }
 
     /**
+     * @param array $attribs
      * @param string $content
+     * @param bool $escapeContent
      * @return string
      */
-    public static function container($content = '')
+    public static function div($attribs = [], $content = '', $escapeContent = false)
     {
-        return self::element('div', [], $content);
+        return self::element('div', $attribs, $content, $escapeContent);
     }
 
     /**
@@ -205,6 +207,28 @@ class HtmlHelper
             ],
             $content
         );
+    }
+
+    /**
+     * @param array $attribs
+     * @param string $content
+     * @param bool $escapeContent
+     * @return string
+     */
+    public static function button($attribs = [], $content = '', $escapeContent = false)
+    {
+        return self::element('button', $attribs, $content, $escapeContent);
+    }
+
+    /**
+     * @param array $attribs
+     * @param string $content
+     * @param bool $escapeContent
+     * @return string
+     */
+    public static function span($attribs = [], $content = '', $escapeContent = false)
+    {
+        return self::element('span', $attribs, $content, $escapeContent);
     }
 
 }
