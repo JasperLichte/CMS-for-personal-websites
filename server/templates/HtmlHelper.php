@@ -24,10 +24,11 @@ class HtmlHelper
     ) {
         $attribsHtml = '';
         foreach ($attribs as $key => $val) {
-            if (!is_string($key) || !(is_string($val) || is_numeric($val))) {
-                continue;
+            if (is_string($key) && (is_string($val) || is_numeric($val))) {
+                $attribsHtml .= " {$key}=\"{$val}\"";
+            } elseif (is_string($val)) {
+                $attribsHtml .= " {$val}";
             }
-            $attribsHtml .= " {$key}=\"{$val}\"";
         }
 
         if ($escapeContent) {
@@ -156,6 +157,15 @@ class HtmlHelper
     }
 
     /**
+     * @param array $attribs
+     * @return string
+     */
+    public static function textInput($attribs = [])
+    {
+        return self::input('text', $attribs);
+    }
+
+    /**
      * @param string $name
      * @param array $attribs
      * @param array $options
@@ -229,6 +239,39 @@ class HtmlHelper
     public static function span($attribs = [], $content = '', $escapeContent = false)
     {
         return self::element('span', $attribs, $content, $escapeContent);
+    }
+
+    /**
+     * @param array $attribs
+     * @param string $content
+     * @param bool $escapeContent
+     * @return string
+     */
+    public static function table($attribs = [], $content = '', $escapeContent = false)
+    {
+        return self::element('table', $attribs, $content, $escapeContent);
+    }
+
+    /**
+     * @param array $attribs
+     * @param string $content
+     * @param bool $escapeContent
+     * @return string
+     */
+    public static function td($attribs = [], $content = '', $escapeContent = false)
+    {
+        return self::element('td', $attribs, $content, $escapeContent);
+    }
+
+    /**
+     * @param array $attribs
+     * @param string $content
+     * @param bool $escapeContent
+     * @return string
+     */
+    public static function tr($attribs = [], $content = '', $escapeContent = false)
+    {
+        return self::element('tr', $attribs, $content, $escapeContent);
     }
 
 }

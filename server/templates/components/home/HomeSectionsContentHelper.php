@@ -23,6 +23,7 @@ class HomeSectionsContentHelper
     const GITHUB_REPOS = 'github-repos';
     const LIVE_PROJECTS = 'live-projects';
     const COLOR_THEMES = 'color-themes';
+    const CUSTOM_COLOR_THEMES_EDITOR = 'custom-color-theme-editor';
     const BG_ANIMATIONS = 'bg-animations';
 
     /**
@@ -72,6 +73,10 @@ class HomeSectionsContentHelper
                 break;
             case self::COLOR_THEMES:
                 $content = ColorThemesHelper::buildThemesSectionHtml();
+                break;
+            case self::CUSTOM_COLOR_THEMES_EDITOR:
+                $header = 'Your own color theme';
+                $content = ColorThemesHelper::buildCustomThemesEditorSectionHtml();
                 break;
             case self::BG_ANIMATIONS:
                 $content = BgAnimationsHelper::buildAnimationsSectionHtml();

@@ -1,4 +1,6 @@
 import Config from "../../config/Config.js";
+import { $, cssVars } from "../helper.js";
+import { setInputValues } from "./customColorThemeSection.js";
 
 export const changeColorTheme = async (colorThemeId: number) => {
   const apiUrl = Config.get('API_ROOT_DIR');
@@ -10,6 +12,10 @@ export const changeColorTheme = async (colorThemeId: number) => {
   html.style.cssText = '';
   for (const varName in theme) {
     html.style.cssText += `--${varName}: ${theme[varName]}`;
+  }
+
+  if ($('#content-section-custom-color-theme-editor')) {
+    setInputValues(cssVars());
   }
 };
 

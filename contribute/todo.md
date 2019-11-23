@@ -6,9 +6,11 @@
 * authentification
 * inputs to modify color themes values in admin page
 * add banner on network status change
+* SEO
 * new sections:
   * about me
   * social media
+  * live custom color theme editor
   * my skills:
     * soft skills
     * hard skills

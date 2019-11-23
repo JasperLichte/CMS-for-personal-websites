@@ -1,0 +1,18 @@
+#content-section-custom-color-theme-editor {
+  & #cutom-theme-inputs {
+    border-spacing: .5rem;
+
+    & tr > td:first-of-type {
+      text-align: right;
+    }
+
+    & input[type=text] {
+      width: 270px;
+    }
+  }
+
+  #save-custom-theme-btn {
+    float: right;
+    font-size: 125%;
+  }
+}

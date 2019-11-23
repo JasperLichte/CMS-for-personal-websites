@@ -143,4 +143,22 @@ class ColorThemesHelper
         return implode('', $html);
     }
 
+    /**
+     * @return string
+     */
+    public static function buildCustomThemesEditorSectionHtml()
+    {
+        $out = [];
+        foreach (ColorThemesHelper::getThemeValuesForIp() as $varName => $value) {
+            $label = HtmlHelper::td([], $varName . ' ', true);
+            $input = HtmlHelper::td([], HtmlHelper::textInput(['name' => $varName, 'value' => $value]));
+
+            $out[] = HtmlHelper::tr([], $label . $input);
+        }
+
+        $table = HtmlHelper::table(['id' => 'cutom-theme-inputs'], implode('', $out));
+        $saveButton = HtmlHelper::button(['id' => 'save-custom-theme-btn', 'disabled'], 'Save');
+        return $table;// . $saveButton;
+    }
+
 }
