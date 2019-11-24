@@ -24,6 +24,10 @@ export const listenForColorThemeEvents = () => {
   .forEach(button => {
     const themeId: number = parseInt(button.getAttribute('data-theme-id'));
     if (!themeId && themeId !== 0) return;
-    button.addEventListener('click', () => changeColorTheme(themeId));
+    button.addEventListener('click', async () => {
+      button.classList.add('loading');
+      await changeColorTheme(themeId);
+      button.classList.remove('loading');
+    });
   });
 };

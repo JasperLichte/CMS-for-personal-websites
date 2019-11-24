@@ -24,13 +24,34 @@ button, input[type="submit"], a.button, a.btn {
   cursor: pointer;
   outline: 0 none;
   transition: background-color .4s $tranistionTimingFunction, $borderColorTransition;
-  &:not(:disabled):hover {
+
+  &:not(:disabled):hover, &:not(.loading):hover {
     background-color: var(--content-accent-bg-color);
     color: var(--body-bg);
   }
 
   &:disabled {
     opacity: .5;
+  }
+
+  &.loading:before {
+    content: '';
+    display: inline-block;
+    margin-right: 8px;
+    height: 1rem;
+    width: 1rem;
+    border-radius: 50%;
+    border: 2px solid var(--content-accent-bg-color);
+    border-top-color: transparent;
+    animation: spin .8s linear infinite;
+
+    keyframes spin {
+      from {
+        transform: rotate(0deg);
+      } to {
+        transform: rotate(360deg);
+      }
+    }
   }
 }
 
