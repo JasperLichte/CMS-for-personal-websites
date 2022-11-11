@@ -29,7 +29,7 @@
     "sass": "^1.17.0",
     "typescript": "^3.3.3",
     "webpack": "^4.28.4",
-    "webpack-cli": "^3.3.5"
+    "webpack-cli": "^3.3.12"
   },
   "dependencies": {
     "fs-extra": "^8.0.1"
